@@ -1,0 +1,23 @@
+
+
+.login{
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .s-img{
+        height: 100%;
+        width: 50%;
+        position: absolute;
+        left: 0;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .content{
+        height: 100%;
+        width: 50%;
+        position: absolute;
+        left: 50%;
+    }
+}
