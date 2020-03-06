@@ -1,11 +1,54 @@
 <div class="login">
   <div class="s-img" [style.background-image]="'url(/assets/images/student.gif)'" alt="">
-    <app-card width="300px" height="350px" slot="div">
-      <div class="login-con">
+
+
+    <app-card width="300px" height="400px" slot="div" *ngIf="register">
+        <div class="register-con">
+            <h3>账单管理系统</h3>
+            <app-input placeholder="用户名" width="250px" height="40px" (handleChange)="onNameChange($event)"></app-input>
+            <app-input placeholder="密码" width="250px" height="40px" type="password" (handleChange)="onPasswordChange($event)"></app-input>
+            <app-input placeholder="重复密码" width="250px" height="40px" type="password" (handleChange)="onPasswordChange($event)"></app-input>
+            <app-input placeholder="邮箱" width="250px" height="40px" type="text" (handleChange)="onMailChange($event)"></app-input>
+            <div class="verify">
+                <app-input placeholder="验证码" width="150px" height="40px" type="text" (handleChange)="onChangeCode($event)"></app-input>
+                <app-button class="get-code-btn" type="rect" width="80px" height="30px" (handleClick)="getVerifyCode($event)">
+                    验证码
+                  </app-button>
+            </div>
+            <app-button type="rect" width="250px" height="30px" (handleClick)="registerAccount($event)">
+                注册
+              </app-button>
+              <div class="forgot" (click)="changeResister()">
+                  已有账号?前往登录
+                </div>
+          </div>
+
+    </app-card>
+
+    
+
+    <app-card width="300px" height="350px" slot="div" *ngIf="!register">
+      
+      <div class="login-con" *ngIf="qr">
+        <h3>账单管理系统</h3>
+        <div class="qr">
+
+        </div>
+        <div class="quick-login">
+          <div>
+            <app-checkbox (handleChange)="onRemeberChange($event)"></app-checkbox>&nbsp;&nbsp;下次自动登录
+          </div>
+          <div (click)="changeQr()">
+            <i class="material-icons-round">
+              account_box
+            </i>&nbsp;&nbsp;账号密码登录
+          </div>
+        </div>
+      </div>
+      <div class="login-con" *ngIf="!qr">
         <h3>账单管理系统</h3>
         <app-input placeholder="用户名" width="250px" height="40px" (handleChange)="onNameChange($event)"></app-input>
-        <app-input placeholder="密码" width="250px" height="40px" type="password"
-          (handleChange)="onPasswordChange($event)"></app-input>
+        <app-input placeholder="密码" width="250px" height="40px" type="password" (handleChange)="onPasswordChange($event)"></app-input>
         <div class="auto-login">
           <app-checkbox (handleChange)="onRemeberChange($event)"></app-checkbox>&nbsp;&nbsp;下次自动登录
         </div>
@@ -13,10 +56,10 @@
           登陆
         </app-button>
         <div class="quick-login">
-          <div>
-            <i class="material-icons-round">select_all</i>&nbsp;&nbsp;快捷扫码登录
+          <div (click)="changeQr()">
+            <i class="material-icons-round">select_all</i>&nbsp;&nbsp;微信扫码登录
           </div>
-          <div>
+          <div (click)="changeResister()">
             注册新账号
           </div>
         </div>
@@ -24,6 +67,7 @@
           忘了密码?
         </div>
       </div>
+
     </app-card>
     <app-message position="top right" #message></app-message>
   </div>
@@ -31,3 +75,4 @@
     <app-loading></app-loading>
   </div>
 </div>
+

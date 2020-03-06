@@ -24,7 +24,8 @@
     user-select: none;
     transition: all .2s ease-in-out;
     position: relative;
-    color: rgba(201, 215, 230, 0.8);
+    color: var(--secondary);
+    // color: rgba(201, 215, 230, 0.8);
     text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
   }
 

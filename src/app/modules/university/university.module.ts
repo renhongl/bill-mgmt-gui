@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UniversityComponent } from './university.component';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonCompsModule } from '../../shared/commonComps';
 
 const UniversityRoutes: Routes = [
   {
@@ -15,6 +16,7 @@ const UniversityRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(UniversityRoutes),
+    CommonCompsModule
   ],
   exports: [UniversityComponent]
 })

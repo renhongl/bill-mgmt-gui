@@ -1,1 +1,37 @@
-<p>university works!</p>
+<div class="university">
+    <app-card width="100%" height="100%">
+            <h1>学校列表
+                    <app-input placeholder="搜索老师" width="200px"></app-input>
+                    <app-button height="30px" width="30px">
+                        <i class="material-icons-round">search</i>
+                    </app-button>
+                    <app-button class="create" height="30px" width="30px">
+                            <i class="material-icons-round">add</i>
+                        </app-button>
+            </h1>
+  
+            <table id="keywords" cellspacing="0" cellpadding="0">
+              <thead>
+                <tr>
+                  <th><span>学校名称</span></th>
+                  <th><span>地址</span></th>
+                  <th class="action"><span>操作</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of list">
+                  <td class="lalign">{{item.name}}</td>
+                  <td>{{item.address}}</td>
+                  <td class="action">
+                      <app-button width="24px" height="30px">
+                          <i class="material-icons-round">edit</i>
+                      </app-button>
+                      <app-button width="24px" height="30px">
+                            <i class="material-icons-round">delete</i>
+                        </app-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+    </app-card>
+</div>

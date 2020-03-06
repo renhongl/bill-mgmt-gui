@@ -16,6 +16,22 @@ export class AuthService {
     });
   }
 
+  getCode(userName, mail) {
+    return this.http.post('http://localhost:3000/auth/mail', {
+      username: userName,
+      mail,
+    });
+  }
+
+  register(userName, password, mail, code) {
+    return this.http.post('http://localhost:3000/auth/register', {
+      username: userName,
+      password,
+      mail,
+      code,
+    });
+  }
+
   logout(): void {
     
   }

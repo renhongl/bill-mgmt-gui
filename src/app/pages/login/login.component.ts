@@ -12,9 +12,13 @@ export class LoginComponent implements OnInit {
 
   userName: string;
   password: string;
+  mail: string;
+  code: string;
   @ViewChild('message', { static: false }) message;
   loading = false;
   remember = false;
+  qr = true;
+  register = false;
 
   constructor(private authSer: AuthService, private router: Router) {
   }
@@ -32,6 +36,42 @@ export class LoginComponent implements OnInit {
 
   onRemeberChange(value) {
     this.remember = value;
+  }
+
+  changeResister() {
+    this.register = !this.register;
+  }
+
+  changeQr() {
+    this.qr = !this.qr;
+  }
+
+  onMailChange(e) {
+    this.mail = e.target.value;
+  }
+
+  onChangeCode(e) {
+    this.code = e.target.value;
+  }
+
+  getVerifyCode() {
+    this.authSer.getCode(this.userName, this.mail).subscribe(result => {
+      if (result.code === 200) {
+        this.message.open('验证码已发往你的邮箱，请在30分钟内使用。', 'success');
+      } else {
+        this.message.open(result.message, 'error');
+      }
+    });
+  }
+
+  registerAccount() {
+    this.authSer.register(this.userName, this.password, this.mail, this.code).subscribe(result => {
+      if (result.code === 200) {
+        this.message.open('注册成功，请前往登录。', 'success');
+      } else {
+        this.message.open(result.message, 'error');
+      }
+    });
   }
 
   login(e) {
