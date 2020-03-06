@@ -4,7 +4,7 @@
 html,body{
     height: 100%;
     width: 100%;
-    background: #efefef;
+    background: var(--primary);
     overflow: hidden;
 }
 
@@ -14,7 +14,6 @@ html,body{
 }
 
 :root{
-    --bg: #fff;
-    --primary: #fd77db;
-    --secondary: #fd77db;
+    --primary: #D4E0ED;
+    --secondary: #32a3b1;
 }

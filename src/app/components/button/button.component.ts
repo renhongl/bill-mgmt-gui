@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output  } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -7,13 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
-  type: string;
+  @Input() type = 'rect';
+  @Input() width = '50px';
+  @Input() height = '50px';
+  @Output() handleClick = new EventEmitter();
 
   constructor() {
-    this.type = 'normal';
   }
 
   ngOnInit() {
+  }
+
+  callback(e) {
+    const target = e.currentTarget;
+    target.classList.add('active');
+    setTimeout(() => {
+      target.classList.remove('active');
+      this.handleClick.next(e);
+    }, 200);
   }
 
 }

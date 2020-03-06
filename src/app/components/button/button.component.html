@@ -1,2 +1,5 @@
-<div *ngIf="type === 'normal'" class="btn-normal">
+<div [className]="'btn-'+type" (click)="callback($event)" [style.width]="width" [style.height]="height">
+  <div class="inner-wrapper">
+    <ng-content></ng-content>
+  </div>
 </div>

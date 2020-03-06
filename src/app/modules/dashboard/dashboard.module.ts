@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
-import { CardComponent} from '../../components/card/card.component';
-import { ButtonComponent } from '../../components/button/button.component';
+import { CommonCompsModule } from '../../shared/commonComps';
 
 const DashboardRoutes: Routes = [
   {
@@ -13,10 +12,11 @@ const DashboardRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [DashboardComponent, CardComponent, ButtonComponent],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(DashboardRoutes),
+    CommonCompsModule
   ],
   exports: [DashboardComponent]
 })

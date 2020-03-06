@@ -1,11 +1,42 @@
+.header {
+  height: 100%;
+  width: 100%;
+  background: var(--primary);
+  position: relative;
 
+  position: relative;
+  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
 
-.header{
-    height: 100%;
-    width: 100%;
-    background: var(--primary);
-    position: relative;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 
-    position: relative;
-    box-shadow: 2px 2px 3px 0px rgb(0, 0, 0, 0.2);
+  .title {
+    margin-left: 20px;
+    background-color: #354148;
+    color: transparent;
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+    -webkit-background-clip: text;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .title:hover{
+    background-color: var(--secondary);
+  }
+
+  .tools {
+    width: 30%;
+    justify-self: flex-end;
+    /* float: right; */
+    position: absolute;
+    right: 20px;
+    display: flex;
+    justify-content: flex-end;
+
+    app-button {
+      margin-left: 20px;
+    }
+  }
 }
