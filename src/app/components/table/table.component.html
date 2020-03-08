@@ -1,0 +1,29 @@
+<div class="table">
+    <table class="table-con" cellspacing="0" cellpadding="0">
+        <thead *ngIf="list.length > 0">
+            <tr>
+                <th *ngFor="let name of colums">
+                    <span>{{name}}</span>
+                </th>
+                <th class="action-btn" *ngIf="edit || delete">
+                    <span>操作</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let item of list">
+                <td *ngFor="let name of item">{{name}}</td>
+                <td *ngIf="edit || delete">
+                    <div class="action">
+                        <app-button (click)="editRow(item)" width="20px" height="25px" *ngIf="edit">
+                            <i class="material-icons-round">edit</i>
+                        </app-button>
+                        <app-button (click)="deleteRow(item)" width="20px" height="25px" *ngIf="delete">
+                            <i class="material-icons-round">delete</i>
+                        </app-button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

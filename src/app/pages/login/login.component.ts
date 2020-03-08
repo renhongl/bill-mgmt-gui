@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../modules/auth/auth.service';
-import { Auth } from '../../types/authTypes';
+import { Success } from '../../types/response';
 import { Router } from '@angular/router';
 
 @Component({
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   }
 
   getVerifyCode() {
-    this.authSer.getCode(this.userName, this.mail).subscribe(result => {
+    this.authSer.getCode(this.userName, this.mail).subscribe((result: Success) => {
       if (result.code === 200) {
         this.message.open('验证码已发往你的邮箱，请在30分钟内使用。', 'success');
       } else {
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
   }
 
   registerAccount() {
-    this.authSer.register(this.userName, this.password, this.mail, this.code).subscribe(result => {
+    this.authSer.register(this.userName, this.password, this.mail, this.code).subscribe((result: Success) => {
       if (result.code === 200) {
         this.message.open('注册成功，请前往登录。', 'success');
       } else {
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
   login(e) {
     this.loading = true;
     setTimeout(() => {
-      this.authSer.login(this.userName, this.password).subscribe((result: Auth) => {
+      this.authSer.login(this.userName, this.password).subscribe((result: Success) => {
         this.loading = false;
         if (result.code === 200) {
           const token = result.data.token;
