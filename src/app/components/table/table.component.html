@@ -1,6 +1,9 @@
 <div class="table">
-    <table class="table-con" cellspacing="0" cellpadding="0">
-        <thead *ngIf="list.length > 0">
+    <div class="no-data" *ngIf="list.length === 0">
+        没有数据
+    </div>
+    <table class="table-con" cellspacing="0" cellpadding="0" *ngIf="list.length > 0">
+        <thead>
             <tr>
                 <th *ngFor="let name of colums">
                     <span>{{name}}</span>

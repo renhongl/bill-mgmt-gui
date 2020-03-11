@@ -15,11 +15,17 @@
     font-size: 12px;
   }
 
+  .disabled{
+    cursor: not-allowed !important;
+    pointer-events: none;
+    color: #b1b1b1 !important;
+  }
+
   .prev, .next {
     width: 50px;
     height: 30px;
     border-radius: 15px;
-    box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
+    box-shadow: var(--shadow);
     display: flex;
     justify-content: center;
     align-items: center;

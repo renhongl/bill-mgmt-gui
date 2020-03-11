@@ -1,6 +1,22 @@
 .login {
   height: 100%;
   width: 100%;
+
+  .login-tabs{
+    display: flex;
+    justify-content: center;
+  }
+  h3 {
+    background-color: #354148;
+    color: transparent;
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+    -webkit-background-clip: text;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 10px;
+  }
   .loading {
     position: fixed;
     left: 0;
@@ -60,15 +76,7 @@
       .get-code-btn{
         margin-left: 20px;
       }
-      h3 {
-        background-color: #354148;
-        color: transparent;
-        text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
-        -webkit-background-clip: text;
-        font-weight: bold;
-        font-size: 20px;
-        margin-bottom: 20px;
-      }
+      
       app-input {
         margin-top: 10px;
       }
@@ -84,6 +92,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      padding-top: 20px;
       .qr {
         width: 150px;
         height: 150px;
@@ -100,6 +109,7 @@
         font-size: 12px;
         margin-top: 20px;
         padding-left: 50px;
+        color: var(--secondary);
       }
       .quick-login {
         width: 100%;
@@ -115,6 +125,9 @@
           margin-top: 20px; // padding-left: 50px;
           cursor: pointer;
           color: var(--secondary);
+        }
+        &>div:hover{
+          // text-decoration-line: underline;
         }
       }
       .forgot {

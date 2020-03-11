@@ -9,7 +9,7 @@
   color: var(--secondary);
   cursor: pointer;
   padding: 2px;
-  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
+  box-shadow: var(--shadow);
   text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
   
   i{

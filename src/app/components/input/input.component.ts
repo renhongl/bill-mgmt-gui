@@ -12,6 +12,7 @@ export class InputComponent implements OnInit {
   @Input() width = '120px';
   @Input() height = '30px';
   @Input() type = 'text';
+  @Input() value = '';
 
   constructor() { }
 

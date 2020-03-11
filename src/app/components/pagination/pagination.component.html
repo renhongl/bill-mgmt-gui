@@ -1,13 +1,13 @@
 <div class="pagination">
-    <div class="prev" (click)="callback($event, 'prev')">
+    <div class="prev" (click)="callback($event, false)" [class.disabled]="current === 0">
         <i class="material-icons-round">
             navigate_before
         </i>
     </div>
     <div class="page">
-        1-10 / 100
+        {{current * limit + 1}}-{{((current + 1) * limit) > total ? total : (current + 1) * limit}} / {{total}}
     </div>
-    <div class="next" (click)="callback($event, 'next')">
+    <div class="next" (click)="callback($event, true)" [class.disabled]="current + 1 >= maxPage">
         <i class="material-icons-round">
             navigate_next
         </i>

@@ -13,7 +13,21 @@ html,body{
     padding: 0;
 }
 
+// update
+
+// :root{
+//     --bg: #3a3a3a;
+//     --primary: #3a3a3a;
+//     --secondary: #32a3b1;
+//     --shadow: 2px 2px 2px #000000, -2px -2px 2px #0aec4e;
+// }
+
+
+// current
+
 :root{
+    --bg: #3a3a3a;
     --primary: #D4E0ED;
     --secondary: #32a3b1;
+    --shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
 }
