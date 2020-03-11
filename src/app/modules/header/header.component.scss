@@ -13,17 +13,14 @@
 
   .title {
     margin-left: 20px;
-    background-color: #354148;
-    color: transparent;
-    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
-    -webkit-background-clip: text;
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
+    color: var(--secondary);
   }
 
   .title:hover{
-    background-color: var(--secondary);
+    text-shadow: var(--textShadow);
   }
 
   .tools {

@@ -6,30 +6,25 @@
   user-select: none;
   transition: all .2s ease-in-out;
   position: relative;
-  color: var(--secondary);
+  color: var(--textDefault);
   cursor: pointer;
   padding: 2px;
   box-shadow: var(--shadow);
-  text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
-  
-  i{
-    background-color: #354148;
-    color: transparent;
-    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
-    -webkit-background-clip: text;
-    font-weight: bold;
-  }
 }
 
 .checkbox.active {
-  box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48), inset -3px -3px 7px #FFFFFF;
-  text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
+  box-shadow: var(--insetShadow);
+  color: var(--secondary);
 }
 
 .checkbox:hover {
-  background: #f1f1f157;
+  background: var(--hover);
 }
 
-.checked{
-    background-color: var(--secondary) !important;
+.checked {
+  background-color: var(--insetShadow) !important;
+  &:hover {
+    text-shadow: var(--textShadow);
+  }
 }
+

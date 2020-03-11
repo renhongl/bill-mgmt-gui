@@ -1,5 +1,5 @@
 .select {
-  border-radius: 15px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,8 +7,7 @@
   font-size: 12px;
   transition: all .2s ease-in-out;
   position: relative;
-  color: rgba(201, 215, 230, 0.8);
-  box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48), inset -3px -3px 7px #FFFFFF;
+  box-shadow: var(--insetShadow);
   position: relative;
 
   .items {
@@ -20,13 +19,12 @@
     position: absolute;
     left: 0;
     top: 100%;
-    border-radius: 15px;
-    width: 100%;
+    width: calc(100% - 20px);
     box-shadow: var(--shadow);
-    border-radius: 15px;
+    border-radius: 5px;
     background: var(--primary);
     z-index: 10;
-
+    padding: 10px;
   }
 
   .items.active {
@@ -34,29 +32,28 @@
     max-height: 200px;
     pointer-events: all;
     overflow: auto;
+    width: calc(100% - 20px);
     position: absolute;
     left: 0;
     top: 100%;
-    border-radius: 15px;
-    width: 100%;
     box-shadow: var(--shadow);
-    border-radius: 15px;
+    border-radius: 5px;
     background: var(--primary);
     z-index: 10;
 
     .item {
       background: var(--primary);
-      color: gray;
+      color: var(--textDefault);
       height: 30px;
-      //   background: var(--primary);
       line-height: 30px;
       padding-left: 10px;
-      border-radius: 15px;
+      border-radius: 5px;
 
       &:hover {
-        box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48), inset -3px -3px 7px #FFFFFF;
+        box-shadow: var(--insetShadow);
         cursor: pointer;
         color: var(--secondary);
+        text-shadow: var(--textShadow);
       }
     }
   }
@@ -72,13 +69,7 @@
     height: 100%;
     align-items: center;
     cursor: pointer;
-
-    user-select: none;
-    transition: all .2s ease-in-out;
-    position: relative;
     color: var(--secondary);
-    // color: rgba(201, 215, 230, 0.8);
-    text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
   }
 
   .btn {

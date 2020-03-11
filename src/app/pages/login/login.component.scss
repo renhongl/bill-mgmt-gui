@@ -7,10 +7,7 @@
     justify-content: center;
   }
   h3 {
-    background-color: #354148;
-    color: transparent;
-    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
-    -webkit-background-clip: text;
+    color: var(--secondary);
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 20px;

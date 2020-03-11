@@ -15,4 +15,10 @@ export class TabsComponent implements OnInit {
     
   }
 
+  handleClick(e) {
+    if (this.active) {
+      e.stopPropagation();
+    }
+  }
+
 }

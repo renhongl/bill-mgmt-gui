@@ -1,5 +1,3 @@
-<div [className]="active ? 'tabs active' : 'tabs'">
-  <div class="con">
+<div [className]="active ? 'tabs active' : 'tabs'" (click)="handleClick($event)">
     <ng-content></ng-content>
-  </div>
 </div>

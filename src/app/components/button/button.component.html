@@ -1,5 +1,5 @@
-<div [className]="'btn-'+type" (click)="callback($event)" [style.width]="width" [style.height]="height">
-  <div class="inner-wrapper">
+<div [className]="'btn-'+type" (mousedown)="down($event)" (mouseup)="up($event)" [style.width]="width" [style.height]="height">
+  <!-- <div class="inner-wrapper"> -->
     <ng-content></ng-content>
-  </div>
+  <!-- </div> -->
 </div>

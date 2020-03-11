@@ -22,11 +22,14 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   ngOnChanges(args) {
     this.maxPage = Math.ceil(this.total / this.limit);
-    this.total = args.total.currentValue;
+    this.total = args.total && args.total.currentValue;
   }
 
   callback(e, type) {
     const target = e.currentTarget;
+    if (Array.from(target.classList).includes('disabled')) {
+      return;
+    }
     target.classList.add('active');
     setTimeout(() => {
       target.classList.remove('active');

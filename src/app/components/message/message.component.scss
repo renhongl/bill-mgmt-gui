@@ -1,6 +1,5 @@
+
 :host{
-  width: 250px;
-  height: 50px;
   position: fixed;
 }
 
@@ -27,22 +26,22 @@
 
 .success {
   background: #32dc8d;
-  box-shadow: 4px 2px 16px rgba(50, 220, 141, 0.48), -4px -2px 16px #FFFFFF;
+  box-shadow: var(--shadow);
 }
 
 .warning {
   background: #dcb732;
-  box-shadow: 4px 2px 16px rgba(220, 183, 50, 0.48), -4px -2px 16px #FFFFFF;
+  box-shadow: var(--shadow);
 }
 
 .infor {
   background: #327edc;
-  box-shadow: 4px 2px 16px rgba(50, 126, 220, 0.48), -4px -2px 16px #FFFFFF;
+  box-shadow: var(--shadow);
 }
 
 .error {
   background: #dc3271;
-  box-shadow: 4px 2px 16px rgba(220, 50, 113, 0.48), -4px -2px 16px #FFFFFF;
+  box-shadow: var(--shadow);
 }
 
 .top {

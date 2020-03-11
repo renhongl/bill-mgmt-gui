@@ -15,23 +15,26 @@ html,body{
 
 // update
 
-// :root{
-//     --bg: #18191f;
-//     --primary: #18191f;
-//     --secondary: #DB4655;
-//     --shadow: 3px 3px 5px #020202, -3px -3px 5px #23252d, -3px -3px 3px #23252d;
-//     --textShadow: 0 0 1px #DB4655;
-// }
+:root{
+    --primary: #18191f;
+    --secondary: #5FBAF2;
+    --shadow: 3px 3px 5px #020202, -3px -3px 5px #23252d, -3px -3px 3px #23252d;
+    --textShadow: 0 0 3px #5FBAF2;
+    --insetShadow: inset 3px 3px 5px #020202, inset -3px -3px 5px #23252d, inset -3px -3px 3px #23252d,
+    1px 1px 1px 0 rgba(0, 0, 0, 2);
+    --hover: #141419;
+    --textDefault: gray;
+}
 
 
 // current
 
-:root{
-    --bg: #3a3a3a;
-    --primary: #D4E0ED;
-    --secondary: #32a3b1;
-    --shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
-}
+// :root{
+//     --bg: #3a3a3a;
+//     --primary: #D4E0ED;
+//     --secondary: #32a3b1;
+//     --shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
+// }
 
 
 /* width */
@@ -41,7 +44,7 @@ html,body{
   
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
+    box-shadow: inset 0 0 5px var(--textDefault); 
     border-radius: 10px;
   }
    

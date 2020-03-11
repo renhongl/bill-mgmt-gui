@@ -8,8 +8,8 @@ import { Component, OnInit, Input, EventEmitter, Output  } from '@angular/core';
 export class ButtonComponent implements OnInit {
 
   @Input() type = 'rect';
-  @Input() width = '50px';
-  @Input() height = '50px';
+  @Input() width = '30px';
+  @Input() height = '30px';
   @Output() handleClick = new EventEmitter();
 
   constructor() {
@@ -18,13 +18,15 @@ export class ButtonComponent implements OnInit {
   ngOnInit() {
   }
 
-  callback(e) {
+  down(e) {
     const target = e.currentTarget;
     target.classList.add('active');
-    setTimeout(() => {
-      target.classList.remove('active');
-      this.handleClick.next(e);
-    }, 200);
+  }
+
+  up(e) {
+    const target = e.currentTarget;
+    target.classList.remove('active');
+    this.handleClick.next(e);
   }
 
 }

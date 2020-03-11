@@ -5,30 +5,26 @@
   height: 30px;
   display: inline-block;
   line-height: 30px;
-  padding: 0 10px;
-  border-radius: 15px;
-  cursor: pointer;
-
-  .con {
-    background-color: #354148;
-    color: transparent;
-    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
-    -webkit-background-clip: text;
-    font-weight: bold;
-    font-size: 12px;
-  }
+  padding: 0 20px;
+  border-radius: 5px;
+  
+  font-size: 12px;
+  color: var(--secondary);
 }
 
 .tabs.active {
-  pointer-events: none;
-  box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48), inset -3px -3px 7px #FFFFFF;
-  text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
+  box-shadow: var(--insetShadow);
+  color: var(--textDefault);
 
-  .con {
-    color: var(--secondary);
+  &:hover {
+    cursor: default;
+    text-shadow: none;
+    background: var(--primary);
   }
 }
 
 .tabs:hover {
-  background: #f1f1f157;
+  cursor: pointer;
+  background: var(--hover);
+  text-shadow: var(--textShadow);
 }
