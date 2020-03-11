@@ -2,7 +2,7 @@
   //   width: 100%;
   //   height: 100%;
   display: flex;
-  padding: 0 30px;
+  // padding: 0 30px;
   justify-content: center;
   align-items: center;
 
@@ -22,6 +22,11 @@
   .table-con {
     width: 100%;
     height: 100%;
+
+    .asc i{
+      color: var(--secondary);
+      font-size: 16px;
+    }
     .action {
       width: 100%;
       height: 100%;
@@ -42,6 +47,7 @@
       /* padding-left: 42px; */
       text-align: left; //   width: 30%;
       border-bottom: 1px solid gray;
+      cursor: pointer;
     }
     th.action-btn {
       width: 100px !important;

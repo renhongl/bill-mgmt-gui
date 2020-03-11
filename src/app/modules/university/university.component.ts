@@ -19,12 +19,26 @@ export class UniversityComponent implements OnInit {
   drawer = false;
   current = null;
   title = '新增学校';
+  sortKey = 'name';
+  asc = 1;
+  navNameArr = ['主页', '学校管理'];
+  navPathArr = ['/', '/university'];
 
   constructor(private uniSrc: UniversityService) { }
 
   @ViewChild('message', { static: false }) message;
 
   ngOnInit() {
+    this.search();
+  }
+
+  changeSortKey(value) {
+    if (value === this.sortKey) {
+      this.asc = -(this.asc);
+    } else {
+      this.sortKey = value;
+      this.asc = 1;
+    }
     this.search();
   }
 
@@ -116,7 +130,7 @@ export class UniversityComponent implements OnInit {
   }
 
   search() {
-    this.uniSrc.searchUni(this.index, this.total, this.searchWord).subscribe((result: Success) => {
+    this.uniSrc.searchUni(this.index, this.total, this.searchWord, this.sortKey, this.asc).subscribe((result: Success) => {
       if (result.code === 200) {
         this.totalRecords = result['total'];
         console.log(JSON.stringify(result.data));

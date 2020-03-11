@@ -28,8 +28,11 @@ export class TableComponent implements OnInit, OnChanges {
   ];
   @Input() delete = true;
   @Input() edit = true;
+  @Input() asc = 1;
+  @Input() sortKey = '';
   @Output() handleEdit = new EventEmitter();
   @Output() handleDelete = new EventEmitter();
+  @Output() handleSort = new EventEmitter();
 
   list: any;
 
@@ -41,6 +44,10 @@ export class TableComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.list = this.getList();
+  }
+
+  sortBack(value) {
+    this.handleSort.next(value);
   }
 
   getList() {

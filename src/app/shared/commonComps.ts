@@ -11,9 +11,13 @@ import { PaginationComponent } from '../components/pagination/pagination.compone
 import { TabsComponent } from '../components/tabs/tabs/tabs.component';
 import { TabPanelComponent } from '../components/tabs/tab-panel/tab-panel.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
+import { SelectComponent } from '../components/select/select.component';
+import { BreadCrumbsComponent } from '../components/bread-crumbs/bread-crumbs.component';
 
 @NgModule({
   declarations: [
+    BreadCrumbsComponent,
+    SelectComponent,
     DrawerComponent,
     TabPanelComponent,
     TabsComponent,
@@ -29,6 +33,8 @@ import { DrawerComponent } from '../components/drawer/drawer.component';
     CommonModule
   ],
   exports: [
+    BreadCrumbsComponent,
+    SelectComponent,
     DrawerComponent,
     TabPanelComponent,
     TabsComponent,

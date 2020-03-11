@@ -1,7 +1,8 @@
 <div class="university">
   <app-card width="100%" height="100%">
     <div class="uni-con">
-      <h1>学校列表</h1>
+      <app-bread-crumbs [items]="navNameArr" [path]="navPathArr"></app-bread-crumbs>
+      <!-- <h1>学校列表</h1> -->
     <div class="search">
       <app-input placeholder="搜索学校名称、地址" width="200px" (handleChange)="changeSearchWord($event)"></app-input>
       <app-button height="30px" width="30px">
@@ -12,7 +13,7 @@
       </app-button>
     </div>
 
-    <app-table [data]="list" [colums]="colums" [keys]="keys" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)"></app-table>
+    <app-table [sortKey]="sortKey" [asc]="asc" (handleSort)="changeSortKey($event)" [data]="list" [colums]="colums" [keys]="keys" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)"></app-table>
 
     <app-pagination (handleChange)="pageChange($event)" [total]="totalRecords" [current]="index" [limit]="total"></app-pagination>
     </div>

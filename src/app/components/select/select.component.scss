@@ -1,0 +1,93 @@
+.select {
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  font-size: 12px;
+  transition: all .2s ease-in-out;
+  position: relative;
+  color: rgba(201, 215, 230, 0.8);
+  box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48), inset -3px -3px 7px #FFFFFF;
+  position: relative;
+
+  .items {
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    max-height: 200px;
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    border-radius: 15px;
+    width: 100%;
+    box-shadow: var(--shadow);
+    border-radius: 15px;
+    background: var(--primary);
+    z-index: 10;
+
+  }
+
+  .items.active {
+    opacity: 1;
+    max-height: 200px;
+    pointer-events: all;
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    border-radius: 15px;
+    width: 100%;
+    box-shadow: var(--shadow);
+    border-radius: 15px;
+    background: var(--primary);
+    z-index: 10;
+
+    .item {
+      background: var(--primary);
+      color: gray;
+      height: 30px;
+      //   background: var(--primary);
+      line-height: 30px;
+      padding-left: 10px;
+      border-radius: 15px;
+
+      &:hover {
+        box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48), inset -3px -3px 7px #FFFFFF;
+        cursor: pointer;
+        color: var(--secondary);
+      }
+    }
+  }
+
+  .value {
+    outline: none;
+    border: none;
+    background: none;
+    padding-left: 10px;
+    caret-color: var(--secondary);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+
+    user-select: none;
+    transition: all .2s ease-in-out;
+    position: relative;
+    color: var(--secondary);
+    // color: rgba(201, 215, 230, 0.8);
+    text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
+  }
+
+  .btn {
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top: 6px solid var(--secondary);
+    margin-right: 14px;
+    margin-top: 5px;
+  }
+}

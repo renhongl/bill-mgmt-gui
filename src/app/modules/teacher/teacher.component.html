@@ -1,24 +1,40 @@
 <div class="teacher">
   <app-card width="100%" height="100%">
-    <div class="teacher-con">
-      <h1>
-        教师列表
-        
-      </h1>
-  
-      <div class="search">
-        <app-input placeholder="搜索老师" width="200px"></app-input>
-        <app-button height="30px" width="30px">
-          <i class="material-icons-round">search</i>
-        </app-button>
-        <app-button class="create" height="30px" width="30px">
-          <i class="material-icons-round">add</i>
-        </app-button>
-      </div>
-  
-      <app-table [data]="list" [colums]="colums" [keys]="keys" (handleEdit)="onEdit($event)"></app-table>
+    <div class="uni-con">
+      <!-- <h1>老师列表</h1> -->
+      <app-bread-crumbs [items]="navNameArr" [path]="navPathArr"></app-bread-crumbs>
+    <div class="search">
+      <app-input placeholder="搜索姓名、学校、手机号" width="200px" (handleChange)="changeSearchWord($event)"></app-input>
+      <app-button height="30px" width="30px">
+        <i class="material-icons-round">search</i>
+      </app-button>
+      <app-button class="create" height="30px" width="30px" (click)="addRow()">
+        <i class="material-icons-round">add</i>
+      </app-button>
+    </div>
 
-      
+    <app-table [asc]="asc" [sortKey]="sortKey" [data]="list" [colums]="colums" [keys]="keys" (handleSort)="changeSortKey($event)" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)"></app-table>
+
+    <app-pagination (handleChange)="pageChange($event)" [total]="totalRecords" [current]="index" [limit]="total"></app-pagination>
     </div>
   </app-card>
+  <app-message position="top right" #message></app-message>
+  <app-drawer [class.active]="drawer" width="250px" height="350px">
+    <div class="title">
+      {{title}}
+      <app-button type="circle" width="30px" height="30px" (click)="close()">
+        <i class="material-icons-round">close</i>
+      </app-button>
+    </div>
+    <div class="edit-con" *ngIf="current">
+      <div class="key">老师姓名</div>
+      <app-input [value]="current.name" width="100%" (handleChange)="changeName($event)"></app-input>
+      <div class="key">所属学校</div>
+      <app-select width="100%" [items]="uniArr" [value]="current.uni || uniArr[0]" (handleChange)="changeUni($event)"></app-select>
+      <div class="key">手机号</div>
+      <app-input [value]="current.phone" width="100%" (handleChange)="changePhone($event)"></app-input>
+      <br>
+      <app-button width="100%" height="30px" (click)="submit()">提交</app-button>
+    </div>
+  </app-drawer>
 </div>

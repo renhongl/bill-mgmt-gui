@@ -5,47 +5,49 @@ import URL from '../../utils/url';
 @Injectable({
   providedIn: 'root'
 })
-export class UniversityService {
+export class TeacherService {
 
   constructor(private http: HttpClient) {
 
   }
 
-  updateUni(id: string, name: string, address: string) {
+  updateTeacher(id: string, name: string, uni: string, phone) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });
     const options = {
       headers,
      };
-    return this.http.put(URL.UNIVERSITY, {
+    return this.http.put(URL.TEACHER, {
       id,
       name,
-      address,
+      uni,
+      phone
     }, options);
   }
 
-  createUni(name: string, address: string) {
+  createTeacher(name: string, uni: string, phone: string) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });
     const options = {
       headers,
      };
-    return this.http.post(URL.UNIVERSITY, {
+    return this.http.post(URL.TEACHER, {
       name,
-      address,
+      uni,
+      phone
     }, options);
   }
 
-  searchUni(index: number, total: number, searchWord: string, sortKey: string, asc: number) {
+  searchTeacher(index: number, total: number, searchWord: string, sortKey: string, asc: number) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });
     const options = {
       headers,
      };
-    return this.http.post(URL.UNIVERSITY_SEARCH, {
+    return this.http.post(URL.TEACHER_SEARCH, {
       index,
       total,
       searchWord,
@@ -54,13 +56,13 @@ export class UniversityService {
     }, options);
   }
 
-  deleteUni(id: string) {
+  deleteTeacher(id: string) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });
     const options = {
       headers,
      };
-    return this.http.delete(`${URL.UNIVERSITY}/${id}`, options);
+    return this.http.delete(`${URL.TEACHER}/${id}`, options);
   }
 }

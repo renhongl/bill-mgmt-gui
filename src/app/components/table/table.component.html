@@ -1,32 +1,40 @@
 <div class="table">
-    <div class="no-data" *ngIf="list.length === 0">
-        没有数据
-    </div>
-    <table class="table-con" cellspacing="0" cellpadding="0" *ngIf="list.length > 0">
-        <thead>
-            <tr>
-                <th *ngFor="let name of colums">
-                    <span>{{name}}</span>
-                </th>
-                <th class="action-btn" *ngIf="edit || delete">
-                    <span>操作</span>
-                </th>
-            </tr>
-        </thead>
-        <tbody >
-            <tr *ngFor="let item of list">
-                <td *ngFor="let name of item">{{name}}</td>
-                <td *ngIf="edit || delete">
-                    <div class="action">
-                        <app-button (click)="editRow(item)" width="20px" height="25px" *ngIf="edit">
-                            <i class="material-icons-round">edit</i>
-                        </app-button>
-                        <app-button (click)="deleteRow(item)" width="20px" height="25px" *ngIf="delete">
-                            <i class="material-icons-round">delete</i>
-                        </app-button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="no-data" *ngIf="list.length === 0">
+    没有数据
+  </div>
+  <table class="table-con" cellspacing="0" cellpadding="0" *ngIf="list.length > 0">
+    <thead>
+      <tr>
+        <th *ngFor="let name of colums; let i = index" (click)="sortBack(keys[i])">
+          <span>{{name}}</span>
+          <span *ngIf="keys[i] === sortKey" class="asc">
+            <i class="material-icons-round" *ngIf="asc === 1">
+              arrow_upward
+            </i>
+            <i class="material-icons-round" *ngIf="asc === -1">
+              arrow_downward
+            </i>
+          </span>
+        </th>
+        <th class="action-btn" *ngIf="edit || delete">
+          <span>操作</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list">
+        <td *ngFor="let name of item">{{name}}</td>
+        <td *ngIf="edit || delete">
+          <div class="action">
+            <app-button (click)="editRow(item)" width="20px" height="25px" *ngIf="edit">
+              <i class="material-icons-round">edit</i>
+            </app-button>
+            <app-button (click)="deleteRow(item)" width="20px" height="25px" *ngIf="delete">
+              <i class="material-icons-round">delete</i>
+            </app-button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
