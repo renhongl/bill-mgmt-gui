@@ -89,6 +89,7 @@ export class UniversityComponent implements OnInit {
         }
       });
     }
+    this.close();
   }
 
   getCurrentById(id: string) {

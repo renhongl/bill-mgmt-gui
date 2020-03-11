@@ -2,7 +2,7 @@
 
 <div class="bread">
     <div class="item" *ngFor="let item of items; let i = index;">
-        <span [className]="current === i ? 'label current' : 'label'" (click)="handleClick(i)">{{item}}</span>
+        <span [className]="current !== i ? 'label current' : 'label'" (click)="handleClick(i)">{{item}}</span>
         <span class="space" *ngIf="i !== items.length - 1">&nbsp;/&nbsp;</span>
     </div>
 </div>

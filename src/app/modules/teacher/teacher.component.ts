@@ -104,6 +104,7 @@ export class TeacherComponent implements OnInit {
         }
       });
     }
+    this.close();
   }
 
   getCurrentById(id: string) {

@@ -16,7 +16,7 @@ const DashboardRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(DashboardRoutes),
-    CommonCompsModule
+    CommonCompsModule,
   ],
   exports: [DashboardComponent]
 })
