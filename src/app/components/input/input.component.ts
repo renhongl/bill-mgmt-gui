@@ -13,6 +13,7 @@ export class InputComponent implements OnInit {
   @Input() height = '30px';
   @Input() type = 'text';
   @Input() value = '';
+  @Input() disabled = false;
 
   constructor() { }
 
@@ -20,6 +21,9 @@ export class InputComponent implements OnInit {
   }
 
   callback(e) {
+    if (this.disabled) {
+      return;
+    }
     this.handleChange.next(e);
   }
 

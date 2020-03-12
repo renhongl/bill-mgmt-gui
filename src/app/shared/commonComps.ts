@@ -13,9 +13,15 @@ import { TabPanelComponent } from '../components/tabs/tab-panel/tab-panel.compon
 import { DrawerComponent } from '../components/drawer/drawer.component';
 import { SelectComponent } from '../components/select/select.component';
 import { BreadCrumbsComponent } from '../components/bread-crumbs/bread-crumbs.component';
+import { DialogComponent } from '../components/dialog/dialog.component';
+import { PopoverComponent } from '../components/popover/popover.component';
+import { UploadComponent } from '../components/upload/upload.component';
 
 @NgModule({
   declarations: [
+    UploadComponent,
+    PopoverComponent,
+    DialogComponent,
     BreadCrumbsComponent,
     SelectComponent,
     DrawerComponent,
@@ -33,6 +39,9 @@ import { BreadCrumbsComponent } from '../components/bread-crumbs/bread-crumbs.co
     CommonModule
   ],
   exports: [
+    UploadComponent,
+    PopoverComponent,
+    DialogComponent,
     BreadCrumbsComponent,
     SelectComponent,
     DrawerComponent,

@@ -1,0 +1,3 @@
+<div (click)="onClick($event)" #popoverRef [className]="active ? 'popover active' : 'popover'" [style.left.px]="left" [style.top.px]="top" [style.width]="wid + unit" [style.height]="hei + unit">
+    <ng-content></ng-content>
+</div>

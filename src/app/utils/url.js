@@ -1,6 +1,6 @@
 
 
-const SERVER = 'http://localhost:3000';
+export const SERVER = 'http://localhost:3000';
 
 export default {
     AUTH_LOGIN: SERVER + '/auth/login',
@@ -10,4 +10,6 @@ export default {
     UNIVERSITY_SEARCH: SERVER + '/university/search',
     TEACHER: SERVER + '/teacher',
     TEACHER_SEARCH: SERVER + '/teacher/search',
+    FILE: SERVER + '/file',
+    USER: SERVER + '/user',
 }

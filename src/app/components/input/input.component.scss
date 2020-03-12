@@ -6,25 +6,41 @@
   user-select: none;
   transition: all .2s ease-in-out;
   position: relative;
-  color: var(--secondary);
+  color: var(--primary);
   box-shadow: var(--insetShadow);
 
+  ::placeholder {
+    color: var(--default);
+    font-size: 12px;
+  }
+
   input {
+    border-radius: 5px;
     outline: none;
     border: none;
     background: none;
+    font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
-    caret-color: var(--secondary);
+    caret-color: var(--primary);
     display: inline-block;
     width: 100%;
     height: 100%;
-    color: var(--secondary);
+    color: var(--primary);
     letter-spacing: 3px;
 
     user-select: none;
     transition: all .2s ease-in-out;
     position: relative;
+
+    &:focus{
+      box-shadow: var(--inputShadow);
+    }
+  }
+
+  input.disabled{
+    pointer-events: none;
+    color: var(--default);
   }
 
 

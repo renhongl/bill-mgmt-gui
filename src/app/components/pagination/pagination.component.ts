@@ -22,7 +22,6 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   ngOnChanges(args) {
     this.maxPage = Math.ceil(this.total / this.limit);
-    this.total = args.total && args.total.currentValue;
   }
 
   callback(e, type) {

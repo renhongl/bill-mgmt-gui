@@ -1,4 +1,4 @@
-<div [className]="'btn-'+type" (mousedown)="down($event)" (mouseup)="up($event)" [style.width]="width" [style.height]="height">
+<div [className]="'btn-'+type" [class.secondary]="color==='secondary'" [class.primary]="color==='primary'" [class.default]="color==='default'" (mousedown)="down($event)" (mouseup)="up($event)" [style.width]="width" [style.height]="height">
   <!-- <div class="inner-wrapper"> -->
     <ng-content></ng-content>
   <!-- </div> -->

@@ -25,7 +25,7 @@
 }
 
 .success {
-  background: #32dc8d;
+  background: var(--primary);
   box-shadow: var(--shadow);
 }
 
@@ -40,7 +40,7 @@
 }
 
 .error {
-  background: #dc3271;
+  background: var(--secondary);
   box-shadow: var(--shadow);
 }
 

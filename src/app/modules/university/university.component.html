@@ -4,7 +4,7 @@
       <app-bread-crumbs [items]="navNameArr" [path]="navPathArr"></app-bread-crumbs>
       <!-- <h1>学校列表</h1> -->
     <div class="search">
-      <app-input placeholder="搜索学校名称、地址" height="38px" width="200px" (handleChange)="changeSearchWord($event)"></app-input>
+      <app-input placeholder="搜索学校名称、地址" height="35px" width="200px" (handleChange)="changeSearchWord($event)"></app-input>
       <app-button height="30px" width="30px">
         <i class="material-icons-round">search</i>
       </app-button>
@@ -35,4 +35,12 @@
       <app-button width="100%" height="30px" (click)="submit()">提交</app-button>
     </div>
   </app-drawer>
+  <app-dialog #dialogRef width="300px" height="200px">
+    <div class="dialog-con">
+      <h4>删除学校</h4>
+      <p *ngIf="current">请确定是否删除学校: <span class="name">{{current.name}}</span></p>
+      <app-button width="80px" height="30px" color="secondary" (click)="confirmDelete()">删除</app-button>
+      <app-button width="80px" height="30px" color="default" (click)="closeDialog()">返回</app-button>
+    </div>
+  </app-dialog>
 </div>

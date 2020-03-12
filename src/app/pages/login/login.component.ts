@@ -82,6 +82,7 @@ export class LoginComponent implements OnInit {
         if (result.code === 200) {
           const token = result.data.token;
           localStorage.setItem('bill-token', token);
+          localStorage.setItem('bill-user', JSON.stringify(result.data.user));
           this.message.open('登录成功，1秒后跳转到主页。', 'success');
           setTimeout(() => {
             this.router.navigate(['/']);

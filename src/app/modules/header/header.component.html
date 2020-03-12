@@ -1,15 +1,19 @@
 <div class="header">
-    <div class="title" (click)="onClick()">
-        账单管理系统
-    </div>
-    <div class="tools">
+  <div class="title" (click)="onClick()">
+    账单管理系统
+  </div>
+  <div class="tools">
 
-        <app-button type="circle" width="30px" height="30px">
-            <i class="material-icons-round">settings</i>
-        </app-button>
-        <app-button type="circle" width="30px" height="30px">
-            <i class="material-icons-round">account_circle</i>
-        </app-button>
-        
-    </div>
+    <app-button type="circle" width="30px" height="30px" (click)="openAccount($event)">
+      <i class="material-icons-round" #accountRef>account_circle</i>
+    </app-button>
+    <app-popover [base]="base" #accountPopver width="200px" height="200px">
+      <div class="pop-con">
+        <img src="/assets/images/user.png" alt="" widht="50px" height="50px">
+        <div>{{user.username}}</div>
+        <div>{{user.mail}}</div>
+        <app-button width="100px" height="30px" (click)="logout()">退出登录</app-button>
+      </div>
+    </app-popover>
+  </div>
 </div>

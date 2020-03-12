@@ -11,6 +11,7 @@ export class ButtonComponent implements OnInit {
   @Input() width = '30px';
   @Input() height = '30px';
   @Output() handleClick = new EventEmitter();
+  @Input() color = 'default';
 
   constructor() {
   }

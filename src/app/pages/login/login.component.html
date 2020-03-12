@@ -5,15 +5,15 @@
     <app-card width="300px" height="400px" slot="div" *ngIf="register">
       <div class="register-con">
         <h3>账单管理系统</h3>
-        <app-input placeholder="用户名" width="250px" height="40px" (handleChange)="onNameChange($event)"></app-input>
-        <app-input placeholder="密码" width="250px" height="40px" type="password"
+        <app-input placeholder="用户名" width="250px" height="35px" (handleChange)="onNameChange($event)"></app-input>
+        <app-input placeholder="密码" width="250px" height="35px" type="password"
           (handleChange)="onPasswordChange($event)"></app-input>
-        <app-input placeholder="重复密码" width="250px" height="40px" type="password"
+        <app-input placeholder="重复密码" width="250px" height="35px" type="password"
           (handleChange)="onPasswordChange($event)"></app-input>
-        <app-input placeholder="邮箱" width="250px" height="40px" type="text" (handleChange)="onMailChange($event)">
+        <app-input placeholder="邮箱" width="250px" height="35px" type="text" (handleChange)="onMailChange($event)">
         </app-input>
         <div class="verify">
-          <app-input placeholder="验证码" width="150px" height="40px" type="text" (handleChange)="onChangeCode($event)">
+          <app-input placeholder="验证码" width="150px" height="35px" type="text" (handleChange)="onChangeCode($event)">
           </app-input>
           <app-button class="get-code-btn" type="rect" width="80px" height="30px" (handleClick)="getVerifyCode($event)">
             验证码
@@ -44,7 +44,7 @@
 
           </div>
           <div class="quick-login">
-            <div>
+            <div class="default">
               <app-checkbox (handleChange)="onRemeberChange($event)"></app-checkbox>&nbsp;&nbsp;下次自动登录
             </div>
             <div (click)="changeResister()">
@@ -61,8 +61,8 @@
       <app-tab-panel [active]="!qr">
         <div class="login-con" *ngIf="!qr">
           <!-- <h3>账单管理系统</h3> -->
-          <app-input placeholder="用户名" width="250px" height="40px" (handleChange)="onNameChange($event)"></app-input>
-          <app-input placeholder="密码" width="250px" height="40px" type="password"
+          <app-input placeholder="用户名" width="250px" height="35px" (handleChange)="onNameChange($event)"></app-input>
+          <app-input placeholder="密码" width="250px" height="35px" type="password"
             (handleChange)="onPasswordChange($event)"></app-input>
           <div class="auto-login">
             <app-checkbox (handleChange)="onRemeberChange($event)"></app-checkbox>&nbsp;&nbsp;下次自动登录
@@ -103,8 +103,8 @@
       </div>
       <div class="login-con" *ngIf="!qr">
         <h3>账单管理系统</h3>
-        <app-input placeholder="用户名" width="250px" height="40px" (handleChange)="onNameChange($event)"></app-input>
-        <app-input placeholder="密码" width="250px" height="40px" type="password" (handleChange)="onPasswordChange($event)"></app-input>
+        <app-input placeholder="用户名" width="250px" height="35px" (handleChange)="onNameChange($event)"></app-input>
+        <app-input placeholder="密码" width="250px" height="35px" type="password" (handleChange)="onPasswordChange($event)"></app-input>
         <div class="auto-login">
           <app-checkbox (handleChange)="onRemeberChange($event)"></app-checkbox>&nbsp;&nbsp;下次自动登录
         </div>

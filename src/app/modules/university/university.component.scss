@@ -10,12 +10,39 @@
   overflow: auto;
   padding-bottom: 30px;
 
-  .edit-con {
-    app-button{
+
+  .dialog-con {
+    color: var(--default);
+
+    .name {
+      color: var(--secondary);
+    }
+
+    h4 {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      text-align: center;
       margin-top: 20px;
     }
+
+    app-button {
+      float: right;
+      margin-top: 50px;
+      margin-right: 42px;
+    }
+  }
+
+  .edit-con {
+    app-button {
+      margin-top: 20px;
+    }
+
     .key {
-      color: var(--secondary);
+      color: var(--default);
       height: 40px;
       line-height: 40px;
       padding-left: 10px;
@@ -32,7 +59,7 @@
       margin-top: 2px;
     }
 
-    color: var(--secondary);
+    color: var(--default);
     height: 40px;
     line-height: 40px;
     padding-left: 10px;
@@ -53,7 +80,7 @@
     bottom: 20px;
   }
 
-  
+
 
   h1 {
     background-color: #354148;

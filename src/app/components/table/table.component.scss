@@ -24,7 +24,7 @@
     height: 100%;
 
     .asc i{
-      color: var(--secondary);
+      color: var(--primary);
       font-size: 16px;
     }
     .action {
@@ -46,7 +46,7 @@
       padding: 4px 8px;
       /* padding-left: 42px; */
       text-align: left; //   width: 30%;
-      border-bottom: 1px solid var(--textDefault);
+      border-bottom: 1px solid var(--default);
       cursor: pointer;
     }
     th.action-btn {
@@ -57,7 +57,7 @@
       padding-right: 20px;
       background-repeat: no-repeat;
       background-position: 100% 100%;
-      color: var(--secondary);
+      color: var(--primary);
       font-weight: bold;
       font-size: 16px;
       text-align: center;
@@ -75,7 +75,7 @@
       background-image: url('https://i.imgur.com/RkA9MBo.png');
     }
     tbody tr {
-      color: var(--textDefault); //   box-shadow: var(--shadow);
+      color: var(--default); //   box-shadow: var(--shadow);
       border-radius: 5px;
       // color: transparent;
       // background-color: #354148;
@@ -91,7 +91,7 @@
     tbody tr td {
       text-align: left;
       padding: 4px 10px;
-      border-bottom: 1px solid gray;
+      border-bottom: 1px solid var(--default);
     }
     tbody tr td.lalign {
       text-align: left;
@@ -106,9 +106,9 @@
       // border-bottom: 1px solid rgba(128, 128, 128, 0.514);
     }
     tbody tr:hover {
-      color: var(--secondary);
+      color: var(--primary);
       text-shadow: var(--textShadow);
-      // box-shadow: var(--shadow);
+      background: var(--bgHover);
     }
   }
 }

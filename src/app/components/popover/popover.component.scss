@@ -1,0 +1,15 @@
+
+
+.popover.active{
+    display: block;
+    position: fixed;
+    background: var(--bg);
+    box-shadow: var(--shadow);
+}
+
+.popover{
+    position: fixed;
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    display: none;
+}

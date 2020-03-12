@@ -8,6 +8,10 @@
   margin: 0 auto;
   flex-wrap: wrap;
 
+  app-button{
+    font-size: 13px;
+  }
+
   app-card {
     margin: 20px;
   }
@@ -36,14 +40,14 @@
 
 
     h4 {
-      color: var(--secondary);
+      color: var(--primary);
       font-weight: 700;
       font-size: 1.2em;
       letter-spacing: 2px;
     }
 
     p {
-      color: var(--textDefault);
+      color: var(--default);
       font-size: 12px;
     }
 

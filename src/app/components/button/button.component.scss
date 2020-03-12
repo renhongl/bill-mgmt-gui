@@ -5,26 +5,45 @@
 
 .btn-rect {
   min-width: 40px;
-  position: relative;
+  // position: relative;
   border-radius: 18px;
   padding: 2px;
   display: grid;
   place-items: center;
   box-shadow: var(--shadow);
-  color: var(--secondary);
+  color: var(--primary);
   border-radius: 5px;
   cursor: pointer;
   transition: all .2s ease-in-out;
   text-shadow: none;
+  user-select: none;
+  font-size: 12px;
 
+  &:hover{
+    background: var(--bgHover);
+    text-shadow: var(--textShadow);
+  }
 }
 
-.btn-rect:hover {
-  background: var(--hover);
-  text-shadow: var(--textShadow);
-  
+.default{
+  color: var(--default) !important;
+
+  &:hover{
+    text-shadow: none !important;
+  }
 }
 
+.primary{
+  color: var(--primary) !important;
+
+  &:hover{
+    text-shadow: none !important;
+  }
+}
+
+.secondary{
+  color: var(--secondary) !important;
+}
 
 .btn-rect.active {
     box-shadow: var(--insetShadow);
@@ -32,21 +51,22 @@
 
 
 .btn-circle {
-  position: relative;
+  // position: relative;
   border-radius: 50%;
   padding: 2px;
   display: grid;
   place-items: center;
   box-shadow: var(--shadow);
-  color: var(--secondary);
+  color: var(--primary);
   cursor: pointer;
   transition: all .2s ease-in-out;
   text-shadow: none;
-
+  user-select: none;
+  font-size: 12px;
 }
 
 .btn-circle:hover {
-  background: var(--hover);
+  background: var(--bgHover);
   text-shadow: var(--textShadow);
   
 }
@@ -55,3 +75,6 @@
 .btn-circle.active {
     box-shadow: var(--insetShadow);
 }
+
+
+

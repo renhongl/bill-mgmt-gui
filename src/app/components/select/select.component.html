@@ -1,7 +1,7 @@
-<div class="select" (click)="onClick($event)" [style.width]="width" [style.height]="height">
+<div [className]="active ? 'select active' : 'select'" (click)="onClick($event)" [style.width]="width" [style.height]="height">
     <span class="value">{{value}}</span> <span class="btn"></span>
     <div [className]="active ? 'items active' : 'items'" #itemsRef>
-        <div class="item" *ngFor="let item of items" (click)="callback(item, $event)">{{item}}</div>
+        <div class="item" [class.current]="item === value" *ngFor="let item of items" (click)="callback(item, $event)">{{item}}</div>
     </div>
 </div>
 

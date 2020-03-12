@@ -29,6 +29,7 @@ export class TeacherComponent implements OnInit {
   constructor(private teaSer: TeacherService, private uniSer: UniversityService) { }
 
   @ViewChild('message', { static: false }) message;
+  @ViewChild('dialogRef', {static: false}) dialogRef;
 
   ngOnInit() {
     this.search();
@@ -136,13 +137,23 @@ export class TeacherComponent implements OnInit {
     }
   }
 
-  deleteRow(value) {
-    this.teaSer.deleteTeacher(value[0]).subscribe((result: Success) => {
+  confirmDelete() {
+    this.dialogRef.close();
+    this.teaSer.deleteTeacher(this.current.id).subscribe((result: Success) => {
       if (result.code === 200) {
-        this.message.open(`删除 [${value[1]}] 成功`, 'success');
+        this.message.open(`删除 [${this.current.name}] 成功`, 'success');
         this.search();
       }
     });
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
+  deleteRow(row) {
+    this.current = this.getCurrentById(row[0]);
+    this.dialogRef.open();
   }
 
   search() {

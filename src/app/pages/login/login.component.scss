@@ -7,7 +7,7 @@
     justify-content: center;
   }
   h3 {
-    color: var(--secondary);
+    color: var(--default);
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 20px;
@@ -28,7 +28,7 @@
     width: 100%;
     background-repeat: no-repeat;
     background-position: 20% center;
-    background-color: var(--primary);
+    background-color: var(--bg);
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: end;
@@ -64,14 +64,15 @@
         margin-top: 20px;
         padding-right: 50px;
         cursor: pointer;
-        color: var(--secondary);
+        color: var(--primary);
       }
       .forgot:hover {
-        text-decoration-line: underline;
+        // text-decoration-line: underline;
       }
 
       .get-code-btn{
         margin-left: 20px;
+        font-size: 12px;
       }
       
       app-input {
@@ -106,13 +107,16 @@
         font-size: 12px;
         margin-top: 20px;
         padding-left: 50px;
-        color: var(--secondary);
+        color: var(--default);
       }
       .quick-login {
         width: 100%;
         /* padding-left: 50px; */
         display: flex;
         justify-content: space-around;
+        .default{
+          color: var(--default) !important;
+        }
         &>div {
           height: 30px;
           display: flex;
@@ -121,7 +125,7 @@
           font-size: 12px;
           margin-top: 20px; // padding-left: 50px;
           cursor: pointer;
-          color: var(--secondary);
+          color: var(--primary);
         }
         &>div:hover{
           // text-decoration-line: underline;
@@ -140,10 +144,10 @@
         margin-top: 20px;
         padding-right: 50px;
         cursor: pointer;
-        color: var(--secondary);
+        color: var(--primary);
       }
       .forgot:hover {
-        text-decoration-line: underline;
+        // text-decoration-line: underline;
       }
       h3 {
         background-color: #354148;
