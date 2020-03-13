@@ -45,7 +45,9 @@
           </div>
           <div class="quick-login">
             <div class="default">
-              <app-checkbox (handleChange)="onRemeberChange($event)"></app-checkbox>&nbsp;&nbsp;下次自动登录
+              <app-checkbox (handleChange)="onRemeberChange($event)">
+                &nbsp;&nbsp;下次自动登录
+              </app-checkbox>
             </div>
             <div (click)="changeResister()">
               注册新账号
@@ -65,7 +67,9 @@
           <app-input placeholder="密码" width="250px" height="35px" type="password"
             (handleChange)="onPasswordChange($event)"></app-input>
           <div class="auto-login">
-            <app-checkbox (handleChange)="onRemeberChange($event)"></app-checkbox>&nbsp;&nbsp;下次自动登录
+            <app-checkbox (handleChange)="onRemeberChange($event)">
+              &nbsp;&nbsp;下次自动登录
+            </app-checkbox>
           </div>
           <app-button type="rect" width="250px" height="30px" (handleClick)="login($event)">
             登陆

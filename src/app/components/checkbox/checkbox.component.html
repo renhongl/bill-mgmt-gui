@@ -1,3 +1,4 @@
-<div class="checkbox" [style.width]="width" [style.height]="height" (click)="onClick($event)">
-    <i [className]="checked ? 'material-icons-round checked' : 'material-icons-round'">check</i>
+<div class="checkbox" (click)="onClick($event)">
+    <i [className]="checked ? 'material-icons-round checked' : 'material-icons-round'" [style.width]="width" [style.height]="height">check</i>
+    <ng-content></ng-content>
 </div>

@@ -5,6 +5,11 @@
   .login-tabs{
     display: flex;
     justify-content: center;
+    box-shadow: var(--shadow);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 35px;
   }
   h3 {
     color: var(--default);
