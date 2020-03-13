@@ -1,3 +1,4 @@
-<div class="upload" [ngStyle]="{backgroundImage: 'url(' + src + ')'}">
-    <input type="file" (change)="onChange($event)">
+<div class="upload" [style.width]="width" [style.height]="height">
+    <img [src]="src" alt="">
+    <input type="file" (change)="onChange($event)" title="修改头像">
 </div>

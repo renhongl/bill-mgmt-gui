@@ -30,11 +30,11 @@ export class PopoverComponent implements OnInit {
     this.target = this.base.getBoundingClientRect();
     const clientW = document.body.clientWidth;
     if (clientW < this.target.x + this.wid) {
-      this.left = clientW - this.wid;
+      this.left = clientW - this.wid - 20;
     } else {
       this.left = this.target.x;
     }
-    this.top = this.target.y + this.target.height + 5;
+    this.top = this.target.y + this.target.height + 30;
     document.addEventListener('click', (e) => {
       this.active = false;
       this.popoverRef.nativeElement.classList.remove('active');

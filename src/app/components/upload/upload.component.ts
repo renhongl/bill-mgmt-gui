@@ -9,6 +9,8 @@ export class UploadComponent implements OnInit {
 
   @Input() src = '/assets/images/user.png';
   @Output() handleChange = new EventEmitter();
+  @Input() width = '80px';
+  @Input() height = '80px';
 
   constructor() { }
 

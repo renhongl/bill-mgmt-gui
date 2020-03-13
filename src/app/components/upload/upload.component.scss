@@ -1,14 +1,26 @@
 
 
 .upload{
-    width: 80px;
-    height: 80px;
-    box-shadow: var(--insetShadow);
-    position: relative;
-    background-repeat: no-repeat;
-    background-size: 70% 70%;
-    background-position: center center;
+    box-shadow: var(--shadow);
     border-radius: 50%;
+    position: relative;
+    background: var(--bg);
+
+    &:hover{
+        background: var(--bgHover);
+        box-shadow: var(--insetShadow);
+    }
+
+    img{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 80%;
+        height: 80%;
+        border-radius: 50%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
 
     input{
         position: absolute;

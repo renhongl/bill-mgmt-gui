@@ -26,10 +26,10 @@
         <td *ngFor="let name of item">{{name}}</td>
         <td *ngIf="edit || delete">
           <div class="action">
-            <app-button  (click)="editRow(item)" size="small" width="20px" height="25px" *ngIf="edit">
+            <app-button  (click)="editRow(item)" size="small" width="20px" height="20px" *ngIf="edit">
               <i class="material-icons-round">edit</i>
             </app-button>
-            <app-button color="secondary" (click)="deleteRow(item)" width="20px" height="25px" *ngIf="delete">
+            <app-button color="secondary" (click)="deleteRow(item)" width="20px" height="20px" *ngIf="delete">
               <i class="material-icons-round">delete</i>
             </app-button>
           </div>
