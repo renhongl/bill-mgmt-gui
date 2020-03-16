@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   base: any;
   user: any;
   avator: string;
+  dark = true;
 
   constructor(private router: Router) { }
 
@@ -40,6 +41,25 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   openAccount(e) {
     this.accountPopver.open(e);
    
+  }
+
+  changeTheme(e) {
+    this.dark = !this.dark;
+    if (this.dark) {
+      this.darkTheme();
+    } else {
+      this.lightTheme();
+    }
+  }
+
+  darkTheme() {
+    document.documentElement.style.setProperty('--bg', '#18191f');
+    document.documentElement.style.setProperty('--shadow', '3px 3px 5px #020202, -3px -3px 5px #23252d, -3px -3px 3px #23252d');
+  }
+
+  lightTheme() {
+    document.documentElement.style.setProperty('--bg', '#fff');
+    document.documentElement.style.setProperty('--shadow', '3px 3px 5px #02020236, -3px -3px 5px #a2a2a23b, -3px -3px 3px #efefef30');
   }
 
 }
