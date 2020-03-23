@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  @Input() src = '/assets/images/user.png';
+  @Input() src = '/gui/assets/images/user.png';
   @Output() handleChange = new EventEmitter();
   @Input() width = '80px';
   @Input() height = '80px';
