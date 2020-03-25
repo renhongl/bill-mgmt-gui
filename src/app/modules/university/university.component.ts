@@ -21,8 +21,8 @@ export class UniversityComponent implements OnInit {
   title = '新增学校';
   sortKey = 'name';
   asc = 1;
-  navNameArr = ['主页', '学校管理'];
-  navPathArr = ['/', '/university'];
+  navNameArr = ['学校管理'];
+  navPathArr = ['/university'];
 
   constructor(private uniSrc: UniversityService) { }
 

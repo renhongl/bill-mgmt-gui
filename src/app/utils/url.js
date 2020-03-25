@@ -1,6 +1,6 @@
 
 
-export const SERVER = 'http://localhost:3000';
+export const SERVER = 'http://47.244.173.138:80';
 
 export default {
     AUTH_LOGIN: SERVER + '/auth/login',

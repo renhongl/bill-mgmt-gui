@@ -9,7 +9,7 @@
   // height: 650px;
   // overflow: auto;
   // padding-bottom: 30px;
-  margin: 40px auto;
+  margin: 20px auto;
 
   app-card{
     width: 100%;
@@ -73,8 +73,10 @@
   }
 
   .uni-con {
-    width: 100%;
+    width: 98%;
     height: 100%;
+    margin: 20px auto;
+    position: relative;
     // padding: 10px 20px;
     // padding-bottom: 60px;
   }
@@ -113,20 +115,23 @@
     justify-content: center;
     align-items: center;
     margin-top: 15px;
+    position: absolute;
+    right: 0;
+    top: -15px;
 
     app-input {
       position: absolute;
-      right: 160px;
+      right: calc(1% + 120px);
     }
 
     app-button {
       position: absolute;
-      right: 110px;
+      right: calc(1% + 60px);
     }
 
     .create {
       position: absolute;
-      right: 43px;
+      right: 1%;
     }
   }
 }

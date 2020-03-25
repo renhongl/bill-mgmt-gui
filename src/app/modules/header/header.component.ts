@@ -64,7 +64,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   lightTheme() {
     document.documentElement.style.setProperty('--bg', '#f3f0f1');
-    document.documentElement.style.setProperty('--bgHover', '#f3f0f1');
+    document.documentElement.style.setProperty('--bgHover', '#e1e1e1');
     document.documentElement.style.setProperty('--default', '#b1b1b1');
     document.documentElement.style.setProperty('--shadow', '-6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2)');
     document.documentElement.style.setProperty('--insetShadow', 'inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1)');

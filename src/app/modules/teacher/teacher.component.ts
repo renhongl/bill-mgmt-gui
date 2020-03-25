@@ -23,8 +23,8 @@ export class TeacherComponent implements OnInit {
   uniArr = [];
   sortKey = 'name';
   asc = 1;
-  navNameArr = ['主页', '老师管理'];
-  navPathArr = ['/', '/teacher'];
+  navNameArr = ['老师管理'];
+  navPathArr = ['/teacher'];
 
   constructor(private teaSer: TeacherService, private uniSer: UniversityService) { }
 
