@@ -9,6 +9,12 @@
 
     .main{
         height: calc(100% - 50px);
-        overflow: auto;
+
+        .right{
+            width: calc(100% - 200px);
+            float: right;
+            height: 100%;
+            overflow: auto;
+        }
     }
 }

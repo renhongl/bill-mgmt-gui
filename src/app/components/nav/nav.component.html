@@ -1,0 +1,6 @@
+<div class="nav">
+    <div class="item" *ngFor="let name of nameArr; let i = index" [class.current]="index === i" (click)="changeCurrent(i)">
+        <i class="material-icons-round">{{iconArr[i]}}</i>
+        <span class="name">{{name}}</span>
+    </div>
+</div>

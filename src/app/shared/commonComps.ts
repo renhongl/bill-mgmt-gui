@@ -16,9 +16,11 @@ import { BreadCrumbsComponent } from '../components/bread-crumbs/bread-crumbs.co
 import { DialogComponent } from '../components/dialog/dialog.component';
 import { PopoverComponent } from '../components/popover/popover.component';
 import { UploadComponent } from '../components/upload/upload.component';
+import { NavComponent } from '../components/nav/nav.component';
 
 @NgModule({
   declarations: [
+    NavComponent,
     UploadComponent,
     PopoverComponent,
     DialogComponent,
@@ -39,6 +41,7 @@ import { UploadComponent } from '../components/upload/upload.component';
     CommonModule
   ],
   exports: [
+    NavComponent,
     UploadComponent,
     PopoverComponent,
     DialogComponent,

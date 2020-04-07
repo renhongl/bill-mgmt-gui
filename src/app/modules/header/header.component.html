@@ -1,13 +1,17 @@
 <div class="header">
   <div class="title" (click)="onClick()">
-    <img class="logo" src="/assets/images/logo.png" alt="" />账单管理系统
+    <img class="logo" src="/gui/assets/images/logo.png" alt="" />账单管理系统
   </div>
   <div class="tools">
-
+    <app-button type="circle" width="30px" height="30px" (click)="changeTheme($event)">
+      <i class="material-icons-round" *ngIf="!dark">brightness_4</i>
+      <i class="material-icons-round" *ngIf="dark">brightness_7</i>
+    </app-button>
     <app-button type="circle" width="30px" height="30px" (click)="openAccount($event)">
       <!-- <i class="material-icons-round" #accountRef>account_circle</i> -->
       <img class="avator" [src]="avator" alt="" widht="50px" height="50px" #accountRef />
     </app-button>
+    
     <app-popover [base]="base" #accountPopver width="200px" height="200px">
       <div class="pop-con">
         <img [src]="avator" alt="" widht="50px" height="50px">

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { HeaderModule } from '../../modules/header/header.module';
 import { FooterModule } from '../../modules/footer/footer.module';
+import { CommonCompsModule } from '../../shared/commonComps';
 
 const HomeRoutes: Routes = [
   {
@@ -41,6 +42,7 @@ const HomeRoutes: Routes = [
     RouterModule.forChild(HomeRoutes),
     HeaderModule,
     FooterModule,
+    CommonCompsModule,
   ]
 })
 export class HomeModule { }

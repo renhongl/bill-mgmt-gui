@@ -1,43 +1,45 @@
+:host(.active) {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  pointer-events: all;
+  left: 0;
+  background: #5a5a5a6b;
+  transition: all .5s ease-in-out;
+  z-index: 20;
 
-:host(.active){
+
+  .drawer {
     height: 100%;
-    width: 100%;
-    position: fixed;
+    // box-shadow: var(--shadow);
+    border-radius: 5px;
+    padding: 20px;
+    position: absolute;
     top: 0;
-    pointer-events: all;
-    left: 0;
-    background: #5a5a5a6b;
+    right: 0;
     transition: all .5s ease-in-out;
-
-    .drawer{
-        height: 100%;
-        // box-shadow: var(--shadow);
-        border-radius: 5px;
-        padding: 20px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transition: all .5s ease-in-out;
-        background-color: var(--bg);
-    }
+    background-color: var(--bg);
+  }
 }
 
-:host{
-    height: 100%;
-    width: 100%;
-    position: fixed;
+:host {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+
+  .drawer {
+    position: absolute;
     top: 0;
-    left: 0;
-    pointer-events: none;
-    .drawer{
-        position: absolute;
-        top: 0;
-        right: -100%;
-    }
+    right: -100%;
+  }
 }
 
-
-
-
-
-
+@media only screen and (max-width: 992px) {
+  .drawer {
+    width: calc(100% - 40px) !important;
+  }
+}

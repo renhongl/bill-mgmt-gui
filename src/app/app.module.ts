@@ -27,6 +27,9 @@ const appRoutes: Routes = [
     CommonModule,
     RouterModule.forRoot(
       appRoutes,
+      {
+        useHash: true,
+      }
     ),
     HttpClientModule
   ],

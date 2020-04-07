@@ -1,6 +1,5 @@
 
 
-
 const server = localStorage.getItem('bill-server');
 
 export const SERVER = server || 'http://localhost:3000';

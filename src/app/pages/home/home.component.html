@@ -3,8 +3,11 @@
     <app-header></app-header>
   </div>
   <div class="main">
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
+    <app-nav (handleChange)="changePage($event)" [nameArr]="nameArr" [iconArr]="iconArr" [pathArr]="pathArr" [index]="index"></app-nav>
+    <div class="right">
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </div>
   </div>
   
 </div>

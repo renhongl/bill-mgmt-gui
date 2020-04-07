@@ -4,6 +4,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin: 20px;
 
   .page{
     color: var(--default);
@@ -31,8 +32,8 @@
     align-items: center;
     cursor: pointer;
     color: var(--primary);
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
 
     &:hover{
       background: var(--bgHover);

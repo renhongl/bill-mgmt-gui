@@ -5,6 +5,11 @@
   .login-tabs{
     display: flex;
     justify-content: center;
+    box-shadow: var(--shadow);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 35px;
   }
   h3 {
     color: var(--default);
@@ -94,7 +99,7 @@
       .qr {
         width: 150px;
         height: 150px;
-        background-image: url('/assets/images/qr.png');
+        background-image: url('/gui/assets/images/qr.png');
         background-repeat: no-repeat;
         background-size: cover;
       }
