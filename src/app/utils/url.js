@@ -1,6 +1,9 @@
 
 
-export const SERVER = 'http://localhost:3000';
+
+const server = localStorage.getItem('bill-server');
+
+export const SERVER = server || 'http://localhost:3000';
 
 export default {
     AUTH_LOGIN: SERVER + '/auth/login',
@@ -12,4 +15,5 @@ export default {
     TEACHER_SEARCH: SERVER + '/teacher/search',
     FILE: SERVER + '/file',
     USER: SERVER + '/user',
-}
+};
+
