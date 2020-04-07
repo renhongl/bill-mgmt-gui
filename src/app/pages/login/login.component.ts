@@ -76,22 +76,20 @@ export class LoginComponent implements OnInit {
 
   login(e) {
     this.loading = true;
-    setTimeout(() => {
-      this.authSer.login(this.userName, this.password).subscribe((result: Success) => {
-        this.loading = false;
-        if (result.code === 200) {
-          const token = result.data.token;
-          localStorage.setItem('bill-token', token);
-          localStorage.setItem('bill-user', JSON.stringify(result.data.user));
-          this.message.open('登录成功，1秒后跳转到主页。', 'success');
-          setTimeout(() => {
-            this.router.navigate(['/']);
-          }, 2000);
-        } else {
-          this.message.open('登录失败，用户名或密码错误。', 'error');
-        }
-      });
-    }, 2000);
+    this.authSer.login(this.userName, this.password).subscribe((result: Success) => {
+      this.loading = false;
+      if (result.code === 200) {
+        const token = result.data.token;
+        localStorage.setItem('bill-token', token);
+        localStorage.setItem('bill-user', JSON.stringify(result.data.user));
+        this.message.open('登录成功，1秒后跳转到主页。', 'success');
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 2000);
+      } else {
+        this.message.open('登录失败，用户名或密码错误。', 'error');
+      }
+    });
   }
 
 }

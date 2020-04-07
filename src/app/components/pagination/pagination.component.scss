@@ -13,7 +13,7 @@
 
   .disabled{
     cursor: not-allowed !important;
-    color: var(--default) !important;
+    color: var(--disable) !important;
     box-shadow: var(--insetShadow) !important;
 
     &:hover{

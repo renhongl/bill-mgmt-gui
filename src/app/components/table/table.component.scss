@@ -21,7 +21,7 @@
 
     .asc i {
       color: var(--primary);
-      font-size: 16px;
+      font-size: 15px;
     }
 
     .action {
@@ -35,7 +35,7 @@
         margin-left: 10px;
 
         i {
-          font-size: 16px;
+          font-size: 15px;
         }
       }
     }
@@ -53,7 +53,7 @@
           // padding: 4px 8px;
           /* padding-left: 42px; */
           text-align: left; //   width: 30%;
-          border-bottom: 1px solid var(--default);
+          border-bottom: 1px solid var(--disable);
           cursor: pointer;
           flex: 1;
           padding: 4px 10px;
@@ -76,7 +76,7 @@
           // background-position: 100% 100%;
           color: var(--primary);
           font-weight: bold;
-          font-size: 16px;
+          font-size: 15px;
           text-align: center;
           // padding: 5px;
           // display: inline-block;
@@ -111,7 +111,7 @@
           .td {
             text-align: left;
             padding: 4px 10px;
-            border-bottom: 1px solid var(--default);
+            border-bottom: 1px solid var(--disable);
             flex: 1;
             line-height: 30px;
           }
