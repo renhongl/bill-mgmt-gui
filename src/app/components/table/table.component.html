@@ -5,7 +5,7 @@
   <div class="table-con" *ngIf="list.length > 0">
     <div class="thead">
       <div class="tr">
-        <div class="th" *ngFor="let name of colums; let i = index" (click)="sortBack(keys[i])">
+        <div class="th" [class.hide]="i === 0" *ngFor="let name of colums; let i = index" (click)="sortBack(keys[i])">
           <span>{{name}}</span>
           <span *ngIf="keys[i] === sortKey" class="asc">
             <i class="material-icons-round" *ngIf="asc === 1">
@@ -23,7 +23,7 @@
     </div>
     <div class="tbody">
       <div class="tr" *ngFor="let item of list">
-        <span class="td" *ngFor="let name of item">{{name}}</span>
+        <span class="td" *ngFor="let name of item; let i = index" [class.hide]="i === 0">{{name}}</span>
         <span class="td action-btn" *ngIf="edit || delete">
           <span class="action">
             <app-button  (click)="editRow(item)" size="small" width="20px" height="20px" *ngIf="edit">

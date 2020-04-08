@@ -30,6 +30,10 @@ const HomeRoutes: Routes = [
       {
         path: 'account',
         loadChildren: () => import('../../modules/account/account.module').then(m => m.AccountModule),
+      },
+      {
+        path: 'material',
+        loadChildren: () => import('../../modules/material/material.module').then(m => m.MaterialModule),
       }
     ]
   }

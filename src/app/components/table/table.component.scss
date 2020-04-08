@@ -65,6 +65,10 @@
           }
         }
 
+        .th.hide{
+          display: none;
+        }
+
         .th.headerSortUp,
         .th.headerSortDown {
           background: #acc8dd;
@@ -114,6 +118,10 @@
             border-bottom: 1px solid var(--disable);
             flex: 1;
             line-height: 30px;
+          }
+
+          .td.hide{
+            display: none;
           }
 
           .td.lalign {

@@ -9,7 +9,7 @@ export class AppComponent implements OnInit{
   title = 'bill-mgmt-gui';
 
   ngOnInit() {
-    fetch('../assets/config/server.json').then(res => {
+    fetch('/gui/assets/config/server.json').then(res => {
       res.json().then(config => {
         localStorage.setItem('bill-server', config.server);
       });

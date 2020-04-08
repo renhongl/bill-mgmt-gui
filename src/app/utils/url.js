@@ -14,5 +14,9 @@ export default {
     TEACHER_SEARCH: SERVER + '/teacher/search',
     FILE: SERVER + '/file',
     USER: SERVER + '/user',
+    STUDENT: SERVER + '/student',
+    STUDENT_SEARCH: SERVER + '/student/search',
+    MATERIAL: SERVER + '/material',
+    MATERIAL_SEARCH: SERVER + '/material/search',
 };
 

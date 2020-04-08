@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   nameArr = ['主页', '材料管理', '学校管理', '老师管理', '学生管理', '账号管理'];
-  iconArr = ['home', 'delete', 'add', 'delete', 'home', 'add'];
-  pathArr = ['/', '/test', '/university', '/teacher', '/student', '/account'];
+  iconArr = ['home', 'assignment', 'account_balance', 'how_to_reg', 'face', 'person'];
+  pathArr = ['/', '/material', '/university', '/teacher', '/student', '/account'];
   index = 0;
 
   constructor(private router: Router) { }

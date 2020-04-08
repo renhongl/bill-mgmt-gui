@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentComponent } from './student.component';
+import { MaterialComponent } from './material.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonCompsModule } from '../../shared/commonComps';
 
-const StudentRoutes: Routes = [
+const MaterialRoutes: Routes = [
   {
     path: '',
-    component: StudentComponent,
+    component: MaterialComponent,
   }
 ];
 
 @NgModule({
-  declarations: [StudentComponent],
+  declarations: [MaterialComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(StudentRoutes),
+    RouterModule.forChild(MaterialRoutes),
     CommonCompsModule
   ]
 })
-export class StudentModule { }
+export class MaterialModule { }
