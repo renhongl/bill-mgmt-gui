@@ -12,6 +12,7 @@ export class SelectComponent implements OnInit {
   @Input() width = '200px';
   @Input() height = '30px';
   @Input() value = '';
+  @Input() disabled = false;
   @ViewChild('itemsRef', {static: true}) itemsRef;
   active = false;
 
@@ -26,12 +27,18 @@ export class SelectComponent implements OnInit {
   }
 
   onClick(e) {
+    if (this.disabled) {
+      return;
+    }
     this.active = true;
     this.itemsRef.nativeElement.classList.add('active');
     e.stopPropagation();
   }
 
   callback(value, e) {
+    if (this.disabled) {
+      return;
+    }
     this.active = false;
     this.itemsRef.nativeElement.classList.remove('active');
     this.value = value;

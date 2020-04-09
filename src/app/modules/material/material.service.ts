@@ -29,7 +29,7 @@ export class MaterialService {
     }, options);
   }
 
-  createMaterial(name: string, teacher: string, uni: string,content: string, price: string, phone: string) {
+  createMaterial(name: string, teacher: string, uni: string, content: string, price: string, phone: string) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });

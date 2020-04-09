@@ -10,8 +10,8 @@ import { Success } from 'src/app/types/response';
 })
 export class AccountComponent implements OnInit {
 
-  items = ['主页', '账号'];
-  path = ['/', '/account'];
+  items = ['账号管理'];
+  path = ['/account'];
   avator = JSON.parse(localStorage.getItem('bill-user')).avator;
   src = SERVER + '/' + JSON.parse(localStorage.getItem('bill-user')).avator;
   user = null;

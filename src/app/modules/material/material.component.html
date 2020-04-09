@@ -12,6 +12,9 @@
         <app-button class="create" height="25px" width="30px" (click)="addRow()">
           <i class="material-icons-round">add</i>
         </app-button>
+        <app-button class="download" height="25px" width="30px" (click)="download()">
+          <i class="material-icons-round">download</i>
+        </app-button>
       </div>
       <br>
       <app-table [asc]="asc" [sortKey]="sortKey" [data]="list" [colums]="colums" [keys]="keys"
@@ -22,7 +25,7 @@
       </app-pagination>
     </div>
   </app-card>
-  <app-message position="top right" #message></app-message>
+  <app-message [delay]="5000" position="top right" #message></app-message>
   <app-drawer [class.active]="drawer" width="30%" height="350px">
     <div class="title">
       {{title}}
@@ -36,25 +39,27 @@
       <div class="key">手机号</div>
       <app-input [value]="current.phone" width="100%" (handleChange)="changePhone($event)"></app-input>
       <div class="key">学生姓名</div>
-      <app-input [value]="current.name" width="100%" (handleChange)="changeName($event)"></app-input>
+      <app-input [disabled]="true" [value]="current.name" width="100%" (handleChange)="changeName($event)"></app-input>
       <div class="key">所属学校</div>
-      <app-select width="100%" [items]="uniArr" [value]="current.uni" (handleChange)="changeUni($event)">
+      <app-select [disabled]="true" width="100%" [items]="uniArr" [value]="current.uni" (handleChange)="changeUni($event)">
       </app-select>
       <div class="key">所属老师</div>
-      <app-select width="100%" [items]="teaArr" [value]="current.teacher" (handleChange)="changeTeacher($event)">
+      <app-select [disabled]="true" width="100%" [items]="teaArr" [value]="current.teacher" (handleChange)="changeTeacher($event)">
       </app-select>
       <div class="key">价格</div>
       <app-input [value]="current.price" width="100%" (handleChange)="changePrice($event)"></app-input>
       <br>
-      <app-button width="100%" height="25px" (click)="submit()">提交</app-button>
+      <app-button color="primary" width="100%" height="30px" (click)="submit()">提交</app-button>
     </div>
   </app-drawer>
   <app-dialog #dialogRef width="300px" height="150px">
     <div class="dialog-con">
-      <h4>删除老师</h4>
-      <p *ngIf="current">请确定是否删除老师: <span class="name">{{current.name}}</span></p>
-      <app-button width="60px" height="25px" color="secondary" (click)="confirmDelete()">删除</app-button>
+      <h4>删除材料</h4>
+      <p *ngIf="current">请确定是否删除材料: <span class="name">{{current.content + "(" + current.name + ")"}}</span></p>
+      <div>
+        <app-button width="60px" height="25px" color="secondary" (click)="confirmDelete()">删除</app-button>
       <app-button width="60px" height="25px" color="default" (click)="closeDialog()">返回</app-button>
+      </div>
     </div>
   </app-dialog>
 </div>

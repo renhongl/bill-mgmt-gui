@@ -31,7 +31,7 @@ export class MaterialComponent implements OnInit {
   constructor(private matSer: MaterialService, private uniSer: UniversityService, private stuSer: StudentService) { }
 
   @ViewChild('message', { static: false }) message;
-  @ViewChild('dialogRef', {static: false}) dialogRef;
+  @ViewChild('dialogRef', { static: false }) dialogRef;
 
   ngOnInit() {
     this.search();
@@ -90,18 +90,66 @@ export class MaterialComponent implements OnInit {
 
   changePhone(e) {
     this.current.phone = e.target.value;
-    this.stuSer.searchStudent(0, 10, e.target.value, 'name',  1).subscribe((result: any) => {
+    this.stuSer.searchStudent(0, 10, e.target.value, 'name', 1).subscribe((result: any) => {
       const data = result.data;
       if (data.length === 1) {
         this.current.name = data[0].name;
         this.current.uni = data[0].uni;
         this.current.teacher = data[0].teacher;
+      } else {
+        this.message.open('该手机号没有记录，请联系管理员。', 'warning');
       }
     });
   }
 
   changeTeacher(value) {
 
+  }
+
+  download() {
+    this.jsonToCSVConvertor(this.list, 'Report', true);
+  }
+
+  jsonToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
+    let arrData = typeof JSONData !== 'object' ? JSON.parse(JSONData) : JSONData;
+    let CSV = 'sep=,' + '\r\n\n';
+    if (ShowLabel) {
+      let row = "";
+      for (let index in arrData[0]) {
+        row += index + ',';
+      }
+
+      row = row.slice(0, -1);
+      CSV += row + '\r\n';
+    }
+
+    for (let i = 0; i < arrData.length; i++) {
+      let row = "";
+      for (let index in arrData[i]) {
+        row += '"' + arrData[i][index] + '",';
+      }
+
+      row.slice(0, row.length - 1);
+      CSV += row + '\r\n';
+    }
+
+    if (CSV == '') {
+      alert("Invalid data");
+      return;
+    }
+
+    let fileName = "MyReport_";
+    fileName += ReportTitle.replace(/ /g, "_");
+
+    let uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+
+    let link: any = document.createElement("a");
+    link.href = uri;
+    link.style = "visibility:hidden";
+    link.download = fileName + ".csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   submit() {
@@ -123,7 +171,7 @@ export class MaterialComponent implements OnInit {
         }
       });
     } else {
-      this.matSer.updateMaterial(this.current.id, this.current.teacher, this.current.name, this.current.uni, this.current.content, this.current.price,this.current.phone).subscribe((result: Success) => {
+      this.matSer.updateMaterial(this.current.id, this.current.name, this.current.teacher, this.current.uni, this.current.content, this.current.price, this.current.phone).subscribe((result: Success) => {
         if (result.code === 200) {
           this.message.open(`更新 [${this.current.name}] 成功`, 'success');
           this.search();
@@ -184,10 +232,9 @@ export class MaterialComponent implements OnInit {
   }
 
   search() {
-    this.matSer.searchMaterial(this.index, this.total, this.searchWord, this.sortKey, this.asc).subscribe((result: Success) => {
+    this.matSer.searchMaterial(this.index, this.total, this.searchWord, this.sortKey, this.asc).subscribe((result: any) => {
       if (result.code === 200) {
-        this.totalRecords = result['total'];
-        console.log(JSON.stringify(result.data));
+        this.totalRecords = result.total;
         this.list = result.data.map(item => {
           return {
             content: item.content,
@@ -199,7 +246,6 @@ export class MaterialComponent implements OnInit {
             phone: item.phone,
           };
         });
-        console.log(JSON.stringify(this.list));
       }
     });
   }

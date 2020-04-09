@@ -93,6 +93,10 @@
 }
 
 
-.select.active {
-  // box-shadow: var(--inputShadow);
+.select.disable {
+  background: var(--disable);
+
+  .value{
+    color: var(--default) !important;
+  }
 }
