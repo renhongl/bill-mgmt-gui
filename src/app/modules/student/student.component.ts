@@ -60,6 +60,7 @@ export class StudentComponent implements OnInit {
 
   changeUni(value) {
     this.current.uni = value;
+    this.current.teacher = '';
     this.teaSer.searchTeacher(0, 100, value, 'name', 1).subscribe((result: any) => {
       this.teaArr = result.data.map(item => item.name);
     });

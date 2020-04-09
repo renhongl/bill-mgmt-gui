@@ -150,7 +150,7 @@ export class UniversityComponent implements OnInit {
           return {
             name: item.name,
             id: item._id,
-            address: item.address || null
+            address: item.address
           };
         });
         console.log(JSON.stringify(this.list));

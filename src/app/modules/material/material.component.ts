@@ -124,50 +124,76 @@ export class MaterialComponent implements OnInit {
 
   download() {
     const now = Date.now();
-    this.jsonToCSVConvertor(this.list, now, true);
+    const list = this.list.map((item) => {
+      return {
+        content: item.content,
+        name: item.name,
+        phone: item.phone,
+        createTime: item.createTimeStr,
+        pickUpTime: item.pickUpTimeStr || '未取走',
+        uni: item.uni,
+        teacher: item.teacher,
+        price: item.price,
+      }
+    });
+    this.exportCSVFile({
+      content: '内容', 
+      name: '姓名', 
+      phone: '电话',
+      createTime: '创建日期', 
+      pickUpTime: '取走日期', 
+      uni: '学校',
+      teacher: '老师',
+      price: '价格', 
+    }, list, now + '');
   }
 
-  jsonToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
-    const arrData = typeof JSONData !== 'object' ? JSON.parse(JSONData) : JSONData;
-    let CSV = 'sep=,' + '\r\n\n';
-    if (ShowLabel) {
-      let row = '';
-      for (let index in arrData[0]) {
-        row += index + ',';
+  convertToCSV(objArray) {
+    let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    let str = '';
+
+    for (let i = 0; i < array.length; i++) {
+      let line = '';
+      for (let index in array[i]) {
+        if (line != '') line += ','
+
+        line += array[i][index];
       }
 
-      row = row.slice(0, -1);
-      CSV += row + '\r\n';
+      str += line + '\r\n';
     }
 
-    for (let i = 0; i < arrData.length; i++) {
-      let row = '';
-      for (let index in arrData[i]) {
-        row += '"' + arrData[i][index] + '",';
+    return str;
+  }
+
+  exportCSVFile(headers, items, fileTitle) {
+    if (headers) {
+      items.unshift(headers);
+    }
+
+    // Convert Object to JSON
+    let jsonObject = JSON.stringify(items);
+
+    let csv = this.convertToCSV(jsonObject);
+
+    let exportedFilenmae = '报告-' + fileTitle + '.csv' || 'export.csv';
+
+    let blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;\uFEFF' });
+    if (navigator.msSaveBlob) { // IE 10+
+      navigator.msSaveBlob(blob, exportedFilenmae);
+    } else {
+      let link = document.createElement("a");
+      if (link.download !== undefined) { // feature detection
+        // Browsers that support HTML5 download attribute
+        let url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", exportedFilenmae);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
-
-      row.slice(0, row.length - 1);
-      CSV += row + '\r\n';
     }
-
-    if (CSV === '') {
-      alert('无效的数据。');
-      return;
-    }
-
-    let fileName = '报告_';
-    fileName += ReportTitle.replace(/ /g, '_');
-
-    // let uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
-    const uri = 'data:text/csv;charset=utf-8,\uFEFF' + encodeURI(CSV);
-
-    const link: any = document.createElement('a');
-    link.href = uri;
-    link.style = 'visibility:hidden';
-    link.download = fileName + '.csv';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   }
 
   submit() {
