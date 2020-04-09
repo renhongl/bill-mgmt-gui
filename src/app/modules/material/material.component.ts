@@ -11,8 +11,8 @@ import { StudentService } from '../student/student.service';
 })
 export class MaterialComponent implements OnInit {
 
-  colums = ['ID', '样品内容', '学生姓名', '学生电话', '学校', '老师', '价格'];
-  keys = ['id', 'content', 'name', 'phone', 'uni', 'teacher', 'price'];
+  colums = ['ID', '姓名', '内容', '电话', '学校', '老师', '价格', '创建时间', '取走时间'];
+  keys = ['id', 'name', 'content', 'phone', 'uni', 'teacher', 'price', 'createTimeStr', 'pickUpTimeStr'];
   list = [];
   index = 0;
   total = 10;
@@ -35,6 +35,9 @@ export class MaterialComponent implements OnInit {
 
   ngOnInit() {
     this.search();
+    // setTimeout(() => {
+    //   this.jsonToCSVConvertor(this.list, 'Report', true);
+    // }, 5000);
   }
 
   changeSortKey(value) {
@@ -45,6 +48,17 @@ export class MaterialComponent implements OnInit {
       this.asc = 1;
     }
     this.search();
+  }
+
+  pickupMat(row) {
+    this.matSer.updateMaterial(row[0], row[1], row[5], row[4], row[2], row[6], row[3], Date.now().toString()).subscribe((result: Success) => {
+      if (result.code === 200) {
+        this.message.open(`更新 [${row[1]}] 成功`, 'success');
+        this.search();
+      } else {
+        this.message.open(result.message, 'error');
+      }
+    });
   }
 
   getUnis() {
@@ -75,6 +89,8 @@ export class MaterialComponent implements OnInit {
       price: '',
       name: '',
       uni: '',
+      createTime: '',
+      pickUpTime: '',
       teacher: '',
       phone: '',
     };
@@ -107,14 +123,15 @@ export class MaterialComponent implements OnInit {
   }
 
   download() {
-    this.jsonToCSVConvertor(this.list, 'Report', true);
+    const now = Date.now();
+    this.jsonToCSVConvertor(this.list, now, true);
   }
 
   jsonToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
-    let arrData = typeof JSONData !== 'object' ? JSON.parse(JSONData) : JSONData;
+    const arrData = typeof JSONData !== 'object' ? JSON.parse(JSONData) : JSONData;
     let CSV = 'sep=,' + '\r\n\n';
     if (ShowLabel) {
-      let row = "";
+      let row = '';
       for (let index in arrData[0]) {
         row += index + ',';
       }
@@ -124,7 +141,7 @@ export class MaterialComponent implements OnInit {
     }
 
     for (let i = 0; i < arrData.length; i++) {
-      let row = "";
+      let row = '';
       for (let index in arrData[i]) {
         row += '"' + arrData[i][index] + '",';
       }
@@ -133,20 +150,21 @@ export class MaterialComponent implements OnInit {
       CSV += row + '\r\n';
     }
 
-    if (CSV == '') {
-      alert("Invalid data");
+    if (CSV === '') {
+      alert('无效的数据。');
       return;
     }
 
-    let fileName = "MyReport_";
-    fileName += ReportTitle.replace(/ /g, "_");
+    let fileName = '报告_';
+    fileName += ReportTitle.replace(/ /g, '_');
 
-    let uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+    // let uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+    const uri = 'data:text/csv;charset=utf-8,\uFEFF' + encodeURI(CSV);
 
-    let link: any = document.createElement("a");
+    const link: any = document.createElement('a');
     link.href = uri;
-    link.style = "visibility:hidden";
-    link.download = fileName + ".csv";
+    link.style = 'visibility:hidden';
+    link.download = fileName + '.csv';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -162,6 +180,8 @@ export class MaterialComponent implements OnInit {
             price: '',
             name: '',
             uni: '',
+            createTime: '',
+            pickUpTime: '',
             teacher: '',
             phone: '',
           };
@@ -236,11 +256,27 @@ export class MaterialComponent implements OnInit {
       if (result.code === 200) {
         this.totalRecords = result.total;
         this.list = result.data.map(item => {
+          let createDate = '';
+          let pickUpDate = '';
+          if (item.createTime) {
+            const d = new Date(Number(item.createTime));
+            createDate = d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+          }
+
+          if (item.pickUpTime) {
+            const d = new Date(Number(item.pickUpTime));
+            pickUpDate = d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+          }
+
           return {
             content: item.content,
             name: item.name,
             price: item.price,
             id: item._id,
+            createTime: item.createTime,
+            createTimeStr: createDate,
+            pickUpTime: item.pickUpTime,
+            pickUpTimeStr: pickUpDate,
             uni: item.uni || null,
             teacher: item.teacher || null,
             phone: item.phone,

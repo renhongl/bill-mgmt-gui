@@ -56,7 +56,7 @@
           border-bottom: 1px solid var(--disable);
           cursor: pointer;
           flex: 1;
-          padding: 4px 10px;
+          padding: 4px 0px;
           line-height: 30px;
 
           &.action-btn {
@@ -78,7 +78,7 @@
           // padding-right: 20px;
           // background-repeat: no-repeat;
           // background-position: 100% 100%;
-          color: var(--primary);
+          color: var(--default);
           font-weight: bold;
           font-size: 15px;
           text-align: center;
@@ -109,15 +109,25 @@
           &:hover {
             color: var(--primary);
             text-shadow: var(--textShadow);
-            background: var(--bgHover);
+            // background: var(--bgHover);
           }
 
           .td {
             text-align: left;
-            padding: 4px 10px;
+            padding: 4px 0px;
             border-bottom: 1px solid var(--disable);
             flex: 1;
             line-height: 30px;
+
+            .pickup{
+              cursor: pointer;
+              // text-decoration: underline;
+              color: var(--secondary);
+
+              &:hover{
+                text-decoration: underline;
+              }
+            }
           }
 
           .td.hide{

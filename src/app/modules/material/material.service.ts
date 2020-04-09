@@ -11,7 +11,7 @@ export class MaterialService {
 
   }
 
-  updateMaterial(id: string, name: string, teacher: string, uni: string, content: string, price: string, phone: string) {
+  updateMaterial(id: string, name: string, teacher: string, uni: string, content: string, price: string, phone: string, pickUpTime?: string) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });
@@ -24,6 +24,7 @@ export class MaterialService {
       content,
       price,
       teacher,
+      pickUpTime,
       uni,
       phone
     }, options);

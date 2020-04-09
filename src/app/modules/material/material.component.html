@@ -18,7 +18,7 @@
       </div>
       <br>
       <app-table [asc]="asc" [sortKey]="sortKey" [data]="list" [colums]="colums" [keys]="keys"
-        (handleSort)="changeSortKey($event)" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)">
+        (handleSort)="changeSortKey($event)" (pickupMat)="pickupMat($event)" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)">
       </app-table>
 
       <app-pagination (handleChange)="pageChange($event)" [total]="totalRecords" [current]="index" [limit]="total">

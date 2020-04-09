@@ -33,6 +33,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Output() handleEdit = new EventEmitter();
   @Output() handleDelete = new EventEmitter();
   @Output() handleSort = new EventEmitter();
+  @Output() pickupMat ? = new EventEmitter();
 
   list: any;
 
@@ -47,7 +48,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   sortBack(value) {
-    this.handleSort.next(value);
+    this.handleSort.next(value.replace('Str', ''));
   }
 
   getList() {
@@ -70,6 +71,10 @@ export class TableComponent implements OnInit, OnChanges {
   deleteRow(value) {
     console.log('delete' + value);
     this.handleDelete.next(value);
+  }
+
+  pickup(value) {
+    this.pickupMat.next(value);
   }
 
 }

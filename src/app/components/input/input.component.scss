@@ -29,17 +29,17 @@
     color: var(--primary);
     letter-spacing: 3px;
 
-    user-select: none;
     transition: all .2s ease-in-out;
     position: relative;
 
     &:focus{
-      box-shadow: var(--inputShadow);
+      // box-shadow: var(--inputShadow);
     }
   }
 
   input.disabled{
-    pointer-events: none;
+    // pointer-events: none;
+    cursor: not-allowed;
     color: var(--default);
     background: var(--disable);
   }
