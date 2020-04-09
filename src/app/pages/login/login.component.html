@@ -14,11 +14,11 @@
         <div class="verify">
           <app-input placeholder="验证码" width="150px" height="35px" type="text" (handleChange)="onChangeCode($event)">
           </app-input>
-          <app-button class="get-code-btn" type="rect" width="80px" height="30px" (handleClick)="getVerifyCode($event)">
+          <app-button class="get-code-btn" type="rect" width="80px" height="30px" (handleClick)="getVerifyCode()">
             验证码
           </app-button>
         </div>
-        <app-button type="rect" width="250px" height="30px" (handleClick)="registerAccount($event)">
+        <app-button type="rect" width="250px" height="30px" (handleClick)="registerAccount()">
           注册
         </app-button>
         <div class="forgot" (click)="changeResister()">

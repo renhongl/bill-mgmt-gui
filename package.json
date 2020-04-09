@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --deployUrl /gui/",
-    "build": "ng build --deployUrl /gui/",
+    "build": "ng build --deployUrl /gui/ --prod --aot --vendor-chunk --common-chunk --delete-output-path --buildOptimizer --extract-css",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
