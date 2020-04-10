@@ -4,7 +4,7 @@
       <!-- <h1>老师列表</h1> -->
       <app-bread-crumbs [items]="navNameArr" [path]="navPathArr"></app-bread-crumbs>
       <div class="search">
-        <app-input placeholder="搜索姓名、学校、手机号" height="30px" width="200px" (handleChange)="changeSearchWord($event)">
+        <app-input placeholder="搜索姓名、手机号" height="30px" width="200px" (handleChange)="changeSearchWord($event)">
         </app-input>
         <app-button height="25px" width="30px">
           <i class="material-icons-round">search</i>
@@ -34,10 +34,10 @@
       <div class="key">学生姓名</div>
       <app-input [value]="current.name" width="100%" (handleChange)="changeName($event)"></app-input>
       <div class="key">所属学校</div>
-      <app-select width="100%" [items]="uniArr" [value]="current.uni" (handleChange)="changeUni($event)">
+      <app-select width="100%" [items]="getUniArr()" [value]="getUniName()" (handleChange)="changeUni($event)">
       </app-select>
       <div class="key">所属老师</div>
-      <app-select width="100%" [items]="teaArr" [value]="current.teacher" (handleChange)="changeTeacher($event)">
+      <app-select width="100%" [items]="getTeaArr()" [value]="getTeaName()" (handleChange)="changeTeacher($event)">
       </app-select>
       <div class="key">手机号</div>
       <app-input [value]="current.phone" width="100%" (handleChange)="changePhone($event)"></app-input>

@@ -48,18 +48,30 @@ export class TeacherComponent implements OnInit {
 
   getUnis() {
     this.uniSer.searchUni(0, 1000, '', 'address', 1).subscribe((result: Success) => {
-      this.uniArr = result.data.map(item => item.name);
+      this.uniArr = result.data;
     });
   }
 
+  getUniArr() {
+    return this.uniArr.map(item => item.name);
+  }
+
+  getUniName() {
+    if (!this.current.uni) {
+      return '';
+    }
+    return this.uniArr.filter(item => item._id === this.current.uni)[0].name;
+  }
+
   changeUni(value) {
-    this.current.uni = value;
+    this.current.uni = this.uniArr.filter(item => item.name === value)[0]._id;
   }
 
   editRow(row) {
     this.title = '更新老师';
     this.drawer = true;
     this.current = this.getCurrentById(row[0]);
+    this.changeUni(row[2]);
   }
 
   addRow() {
@@ -153,6 +165,7 @@ export class TeacherComponent implements OnInit {
 
   deleteRow(row) {
     this.current = this.getCurrentById(row[0]);
+    this.changeUni(row[2]);
     this.dialogRef.open();
   }
 
@@ -165,7 +178,7 @@ export class TeacherComponent implements OnInit {
           return {
             name: item.name,
             id: item._id,
-            uni: item.uni || null,
+            uni: item.uni.name,
             phone: item.phone,
           };
         });

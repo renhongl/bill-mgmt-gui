@@ -19,7 +19,17 @@ export class MaterialComponent implements OnInit {
   searchWord = '';
   totalRecords = 0;
   drawer = false;
-  current = null;
+  current = {
+    id: '',
+    content: '',
+    price: '',
+    student: '',
+    uni: '',
+    createTime: '',
+    pickUpTime: '',
+    teacher: '',
+    phone: '',
+  };
   title = '新增样品';
   uniArr = [];
   teaArr = [];
@@ -27,6 +37,9 @@ export class MaterialComponent implements OnInit {
   asc = 1;
   navNameArr = ['样品管理'];
   navPathArr = ['/material'];
+  currentStudent = null;
+  currentTeacher = null;
+  currentUni = null;
 
   constructor(private matSer: MaterialService, private uniSer: UniversityService, private stuSer: StudentService) { }
 
@@ -51,14 +64,20 @@ export class MaterialComponent implements OnInit {
   }
 
   pickupMat(row) {
-    this.matSer.updateMaterial(row[0], row[1], row[5], row[4], row[2], row[6], row[3], Date.now().toString()).subscribe((result: Success) => {
-      if (result.code === 200) {
-        this.message.open(`更新 [${row[1]}] 成功`, 'success');
-        this.search();
-      } else {
-        this.message.open(result.message, 'error');
-      }
+    this.searchStudent(row[3], () => {
+      this.matSer.updateMaterial(this.current.id, this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price, Date.now().toString()).subscribe((result: Success) => {
+        if (result.code === 200) {
+          this.message.open(`更新 [${row[1]}] 成功`, 'success');
+          this.search();
+        } else {
+          this.message.open(result.message, 'error');
+        }
+      });
     });
+    this.current.id = row[0];
+    this.current.content = row[2];
+    this.current.phone = row[3];
+    this.current.price = row[6];
   }
 
   getUnis() {
@@ -78,26 +97,36 @@ export class MaterialComponent implements OnInit {
   editRow(row) {
     this.title = '更新样品';
     this.drawer = true;
-    this.current = this.getCurrentById(row[0]);
+    this.searchStudent(row[3]);
+    this.current.id = row[0];
+    this.current.content = row[2];
+    this.current.phone = row[3];
+    this.current.price = row[6];
   }
 
   addRow() {
     this.title = '新增样品';
     this.drawer = true;
-    this.current = {
-      content: '',
-      price: '',
-      name: '',
-      uni: '',
-      createTime: '',
-      pickUpTime: '',
-      teacher: '',
-      phone: '',
-    };
+    this.clearCurrent();
+  }
+
+  clearCurrent() {
+    this.current.id = '';
+    this.current.content = '';
+    this.current.price = '';
+    this.current.student = '';
+    this.current.uni = '';
+    this.current.createTime = '';
+    this.current.pickUpTime = '';
+    this.current.teacher = '';
+    this.current.phone = '';
+    this.currentStudent = null;
+    this.currentTeacher = null;
+    this.currentUni = null;
   }
 
   changeName(e) {
-    this.current.name = e.target.value;
+    // this.current.name = e.target.value;
   }
 
   changeContent(e) {
@@ -106,16 +135,54 @@ export class MaterialComponent implements OnInit {
 
   changePhone(e) {
     this.current.phone = e.target.value;
-    this.stuSer.searchStudent(0, 10, e.target.value, 'name', 1).subscribe((result: any) => {
+    this.searchStudent(e.target.value);
+  }
+
+  searchStudent(value, cb?) {
+    this.stuSer.searchStudent(0, 10, value, 'name', 1).subscribe((result: any) => {
       const data = result.data;
       if (data.length === 1) {
-        this.current.name = data[0].name;
-        this.current.uni = data[0].uni;
-        this.current.teacher = data[0].teacher;
+        this.current.student = data[0]._id,
+        // this.current.name = data[0].name;
+        this.current.uni = data[0].uni._id;
+        this.current.teacher = data[0].teacher._id;
+        this.currentStudent = data[0];
+        this.currentTeacher = data[0].teacher;
+        this.currentUni = data[0].uni;
+        if (cb) {
+          cb();
+        }
       } else {
         this.message.open('该手机号没有记录，请联系管理员。', 'warning');
+        this.current.student = '';
+        this.current.uni = '';
+        this.current.teacher = '';
+        this.currentStudent = null;
+        this.currentTeacher = null;
+        this.currentUni = null;
       }
     });
+  }
+
+  getStudentName() {
+    if (!this.currentStudent) {
+      return '';
+    }
+    return this.currentStudent.name;
+  }
+
+  getTeacherName() {
+    if (!this.currentTeacher) {
+      return '';
+    }
+    return this.currentTeacher.name;
+  }
+
+  getUniName() {
+    if (!this.currentUni) {
+      return '';
+    }
+    return this.currentUni.name;
   }
 
   changeTeacher(value) {
@@ -126,24 +193,25 @@ export class MaterialComponent implements OnInit {
     const now = Date.now();
     const list = this.list.map((item) => {
       return {
-        content: item.content,
-        name: item.name,
-        phone: item.phone,
-        createTime: item.createTimeStr,
-        pickUpTime: item.pickUpTimeStr || '未取走',
         uni: item.uni,
         teacher: item.teacher,
+        name: item.name,
+        phone: item.phone,
+        content: item.content,
+        createTime: item.createTimeStr,
+        pickUpTime: item.pickUpTimeStr || '未取走',
         price: item.price,
       }
     });
+    console.log(JSON.stringify(list));
     this.exportCSVFile({
-      content: '内容', 
-      name: '姓名', 
-      phone: '电话',
-      createTime: '创建日期', 
-      pickUpTime: '取走日期', 
       uni: '学校',
       teacher: '老师',
+      name: '姓名', 
+      phone: '电话',
+      content: '内容', 
+      createTime: '创建日期', 
+      pickUpTime: '取走日期', 
       price: '价格', 
     }, list, now + '');
   }
@@ -198,28 +266,19 @@ export class MaterialComponent implements OnInit {
 
   submit() {
     if (this.title === '新增样品') {
-      this.matSer.createMaterial(this.current.name, this.current.teacher, this.current.uni, this.current.content, this.current.price, this.current.phone).subscribe((result: Success) => {
+      this.matSer.createMaterial(this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price).subscribe((result: Success) => {
         if (result.code === 200) {
-          this.message.open(`添加 [${this.current.name}] 成功`, 'success');
-          this.current = {
-            content: '',
-            price: '',
-            name: '',
-            uni: '',
-            createTime: '',
-            pickUpTime: '',
-            teacher: '',
-            phone: '',
-          };
+          this.message.open(`添加 [${this.current.content}] 成功`, 'success');
+          this.clearCurrent();
           this.search();
         } else {
           this.message.open(result.message, 'error');
         }
       });
     } else {
-      this.matSer.updateMaterial(this.current.id, this.current.name, this.current.teacher, this.current.uni, this.current.content, this.current.price, this.current.phone).subscribe((result: Success) => {
+      this.matSer.updateMaterial(this.current.id, this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price).subscribe((result: Success) => {
         if (result.code === 200) {
-          this.message.open(`更新 [${this.current.name}] 成功`, 'success');
+          this.message.open(`更新 [${this.current.content}] 成功`, 'success');
           this.search();
         } else {
           this.message.open(result.message, 'error');
@@ -262,7 +321,7 @@ export class MaterialComponent implements OnInit {
     this.dialogRef.close();
     this.matSer.deleteMaterial(this.current.id).subscribe((result: Success) => {
       if (result.code === 200) {
-        this.message.open(`删除 [${this.current.name}] 成功`, 'success');
+        this.message.open(`删除 [${this.current.content}] 成功`, 'success');
         this.search();
       }
     });
@@ -296,16 +355,16 @@ export class MaterialComponent implements OnInit {
 
           return {
             content: item.content,
-            name: item.name,
+            name: item.student.name,
             price: item.price,
             id: item._id,
             createTime: item.createTime,
             createTimeStr: createDate,
             pickUpTime: item.pickUpTime,
             pickUpTimeStr: pickUpDate,
-            uni: item.uni || null,
-            teacher: item.teacher || null,
-            phone: item.phone,
+            uni: item.uni.name,
+            teacher: item.teacher.name,
+            phone: item.student.phone,
           };
         });
       }

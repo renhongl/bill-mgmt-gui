@@ -23,6 +23,7 @@ export class StudentComponent implements OnInit {
   title = '新增学生';
   uniArr = [];
   teaArr = [];
+  teaAllArr = [];
   sortKey = 'name';
   asc = 1;
   navNameArr = ['学生管理'];
@@ -36,6 +37,13 @@ export class StudentComponent implements OnInit {
   ngOnInit() {
     this.search();
     this.getUnis();
+    this.getAllTea();
+  }
+
+  getAllTea() {
+    this.teaSer.searchTeacher(0, 100, '', 'name', 1).subscribe((result: any) => {
+      this.teaAllArr = result.data;
+    });
   }
 
   changeSortKey(value) {
@@ -50,26 +58,65 @@ export class StudentComponent implements OnInit {
 
   getUnis() {
     this.uniSer.searchUni(0, 1000, '', 'address', 1).subscribe((result: Success) => {
-      this.uniArr = result.data.map(item => item.name);
+      this.uniArr = result.data;
     });
   }
 
+  getUniArr() {
+    return this.uniArr.map(item => item.name);
+  }
+
   changeTeacher(value) {
-    this.current.teacher = value;
+    if (!value) {
+      return '';
+    }
+    this.current.teacher = this.teaAllArr.filter(item => item.name === value)[0]._id;
+  }
+
+  getTeaName() {
+    if (!this.current.teacher) {
+      return '';
+    }
+    return this.teaAllArr.filter(item => item._id === this.current.teacher)[0].name;
+  }
+
+  getTeaArr() {
+    return this.teaArr.map(item => item.name);
+  }
+
+  getUniName() {
+    if (!this.current.uni) {
+      return '';
+    }
+    return this.uniArr.filter(item => item._id === this.current.uni)[0].name;
   }
 
   changeUni(value) {
-    this.current.uni = value;
+    if (!value) {
+      return;
+    }
+    this.current.uni = this.uniArr.filter(item => item.name === value)[0]._id;
+    const old = this.current.teacher;
     this.current.teacher = '';
-    this.teaSer.searchTeacher(0, 100, value, 'name', 1).subscribe((result: any) => {
-      this.teaArr = result.data.map(item => item.name);
+    this.teaSer.searchTeacherByUni(0, 100, value, 'name', 1).subscribe((result: any) => {
+      this.teaArr = result.data;
+      let arr = this.teaArr.filter(item => item._id === old);
+      if (arr.length !== 0) {
+        this.current.teacher = arr[0]._id;
+      }
     });
   }
 
   editRow(row) {
     this.title = '更新学生';
     this.drawer = true;
-    this.current = this.getCurrentById(row[0]);
+    this.current = {
+      id: row[0],
+      name: row[1],
+      uni: this.uniArr.filter(item => item.name === row[2])[0]._id,
+      teacher: this.teaAllArr.filter(item => item.name === row[3])[0]._id,
+      phone: row[4],
+    };
   }
 
   addRow() {
@@ -164,7 +211,13 @@ export class StudentComponent implements OnInit {
   }
 
   deleteRow(row) {
-    this.current = this.getCurrentById(row[0]);
+    this.current = {
+      id: row[0],
+      name: row[1],
+      uni: this.uniArr.filter(item => item.name === row[2])[0]._id,
+      teacher: this.teaAllArr.filter(item => item.name === row[3])[0]._id,
+      phone: row[4],
+    };
     this.dialogRef.open();
   }
 
@@ -177,8 +230,8 @@ export class StudentComponent implements OnInit {
           return {
             name: item.name,
             id: item._id,
-            uni: item.uni || null,
-            teacher: item.teacher || null,
+            uni: item.uni.name,
+            teacher: item.teacher.name,
             phone: item.phone,
           };
         });

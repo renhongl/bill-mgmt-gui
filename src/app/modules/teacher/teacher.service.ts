@@ -40,6 +40,22 @@ export class TeacherService {
     }, options);
   }
 
+  searchTeacherByUni(index: number, total: number, searchWord: string, sortKey: string, asc: number) {
+    const headers = new HttpHeaders({
+      token: localStorage.getItem('bill-token'),
+    });
+    const options = {
+      headers,
+     };
+    return this.http.post(URL.TEACHER_SEARCH_UNI, {
+      index,
+      total,
+      searchWord,
+      sortKey,
+      asc,
+    }, options);
+  }
+
   searchTeacher(index: number, total: number, searchWord: string, sortKey: string, asc: number) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),

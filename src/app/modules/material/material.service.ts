@@ -11,7 +11,7 @@ export class MaterialService {
 
   }
 
-  updateMaterial(id: string, name: string, teacher: string, uni: string, content: string, price: string, phone: string, pickUpTime?: string) {
+  updateMaterial(id: string, student: string, teacher: string, uni: string, content: string, price: string, pickUpTime?: string) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });
@@ -20,17 +20,16 @@ export class MaterialService {
      };
     return this.http.put(URL.MATERIAL, {
       id,
-      name,
+      student,
       content,
       price,
       teacher,
       pickUpTime,
       uni,
-      phone
     }, options);
   }
 
-  createMaterial(name: string, teacher: string, uni: string, content: string, price: string, phone: string) {
+  createMaterial(student: string, teacher: string, uni: string, content: string, price: string) {
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });
@@ -38,12 +37,11 @@ export class MaterialService {
       headers,
      };
     return this.http.post(URL.MATERIAL, {
-      name,
+      student,
       uni,
       content,
       teacher,
       price,
-      phone
     }, options);
   }
 
@@ -71,5 +69,15 @@ export class MaterialService {
       headers,
      };
     return this.http.delete(`${URL.MATERIAL}/${id}`, options);
+  }
+
+  getMaterial(id: string) {
+    const headers = new HttpHeaders({
+      token: localStorage.getItem('bill-token'),
+    });
+    const options = {
+      headers,
+     };
+    return this.http.get(`${URL.MATERIAL_GET}/${id}`, options);
   }
 }

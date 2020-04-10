@@ -4,7 +4,7 @@
       <!-- <h1>老师列表</h1> -->
       <app-bread-crumbs [items]="navNameArr" [path]="navPathArr"></app-bread-crumbs>
       <div class="search">
-        <app-input placeholder="搜索姓名、学校、手机号" height="30px" width="200px" (handleChange)="changeSearchWord($event)">
+        <app-input placeholder="搜索样品内容" height="30px" width="200px" (handleChange)="changeSearchWord($event)">
         </app-input>
         <app-button height="25px" width="30px">
           <i class="material-icons-round">search</i>
@@ -39,12 +39,12 @@
       <div class="key">手机号</div>
       <app-input [value]="current.phone" width="100%" (handleChange)="changePhone($event)"></app-input>
       <div class="key">学生姓名</div>
-      <app-input [disabled]="true" [value]="current.name" width="100%" (handleChange)="changeName($event)"></app-input>
+      <app-input [disabled]="true" [value]="getStudentName()" width="100%" (handleChange)="changeName($event)"></app-input>
       <div class="key">所属学校</div>
-      <app-select [disabled]="true" width="100%" [items]="uniArr" [value]="current.uni" (handleChange)="changeUni($event)">
+      <app-select [disabled]="true" width="100%" [items]="[]" [value]="getUniName()" (handleChange)="changeUni($event)">
       </app-select>
       <div class="key">所属老师</div>
-      <app-select [disabled]="true" width="100%" [items]="teaArr" [value]="current.teacher" (handleChange)="changeTeacher($event)">
+      <app-select [disabled]="true" width="100%" [items]="teaArr" [value]="getTeacherName()" (handleChange)="changeTeacher($event)">
       </app-select>
       <div class="key">价格</div>
       <app-input [value]="current.price" width="100%" (handleChange)="changePrice($event)"></app-input>
@@ -55,7 +55,7 @@
   <app-dialog #dialogRef width="300px" height="150px">
     <div class="dialog-con">
       <h4>删除材料</h4>
-      <p *ngIf="current">请确定是否删除材料: <span class="name">{{current.content + "(" + current.name + ")"}}</span></p>
+      <p *ngIf="current">请确定是否删除材料: <span class="name">{{current.content}}</span></p>
       <div>
         <app-button width="60px" height="25px" color="secondary" (click)="confirmDelete()">删除</app-button>
       <app-button width="60px" height="25px" color="default" (click)="closeDialog()">返回</app-button>

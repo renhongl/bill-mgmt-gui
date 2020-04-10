@@ -10,6 +10,7 @@ export default {
     AUTH_REGISTER: SERVER + '/auth/register',
     UNIVERSITY: SERVER + '/university',
     UNIVERSITY_SEARCH: SERVER + '/university/search',
+    TEACHER_SEARCH_UNI: SERVER + '/teacher/search/uni',
     TEACHER: SERVER + '/teacher',
     TEACHER_SEARCH: SERVER + '/teacher/search',
     FILE: SERVER + '/file',
@@ -18,5 +19,6 @@ export default {
     STUDENT_SEARCH: SERVER + '/student/search',
     MATERIAL: SERVER + '/material',
     MATERIAL_SEARCH: SERVER + '/material/search',
+    MATERIAL_GET: SERVER + '/material/get',
 };
 
