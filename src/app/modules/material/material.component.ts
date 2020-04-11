@@ -33,8 +33,8 @@ export class MaterialComponent implements OnInit {
   title = '新增样品';
   uniArr = [];
   teaArr = [];
-  sortKey = 'name';
-  asc = 1;
+  sortKey = 'createTime';
+  asc = -1;
   navNameArr = ['样品管理'];
   navPathArr = ['/material'];
   currentStudent = null;

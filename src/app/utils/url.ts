@@ -19,6 +19,6 @@ export default {
     STUDENT_SEARCH: SERVER + '/student/search',
     MATERIAL: SERVER + '/material',
     MATERIAL_SEARCH: SERVER + '/material/search',
-    MATERIAL_GET: SERVER + '/material/get',
+    MATERIAL_GET: SERVER + '/material',
 };
 
