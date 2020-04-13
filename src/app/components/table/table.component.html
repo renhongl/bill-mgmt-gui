@@ -16,7 +16,7 @@
             </i>
           </span>
         </div>
-        <div class="action-btn th" *ngIf="edit || delete">
+        <div class="action-btn th" *ngIf="user.auth === 0 && (edit || delete)">
           <span>操作</span>
         </div>
       </div>
@@ -24,14 +24,14 @@
     <div class="tbody">
       <div class="tr" *ngFor="let item of list">
         <span class="td" *ngFor="let name of item; let i = index" [class.hide]="i === 0">
-          <span *ngIf="colums[i] === '取走时间'">
-            <span *ngIf="name" [title]="name">{{name.split(' ')[1]}}</span>
-            <span class="pickup" *ngIf="!name" (click)="pickup(item)">点击取走</span>
+          <span  *ngIf="colums[i] === '取走时间'">
+            <span class="pickup-con" *ngIf="name" [title]="name">{{name}}<span class="undo" (click)="undo(item)">撤销</span></span>
+            <span class="pickup" *ngIf="!name" (click)="pickup(item)">取走</span>
           </span>
-          <span *ngIf="colums[i] === '创建时间'" [title]="name">{{name.split(' ')[1]}}</span>
+          <span *ngIf="colums[i] === '创建时间'" [title]="name">{{name}}</span>
           <span *ngIf="colums[i] !== '取走时间' && colums[i] !== '创建时间'">{{name}}</span>
         </span>
-        <span class="td action-btn" *ngIf="edit || delete">
+        <span class="td action-btn" *ngIf="user.auth === 0 && (edit || delete)">
           <span class="action">
             <app-button  (click)="editRow(item)" size="small" width="20px" height="20px" *ngIf="edit">
               <i class="material-icons-round">edit</i>

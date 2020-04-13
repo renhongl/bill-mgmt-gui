@@ -34,6 +34,10 @@ const HomeRoutes: Routes = [
       {
         path: 'material',
         loadChildren: () => import('../../modules/material/material.module').then(m => m.MaterialModule),
+      },
+      {
+        path: 'user',
+        loadChildren: () => import('../../modules/user/user.module').then(m => m.UserModule),
       }
     ]
   }

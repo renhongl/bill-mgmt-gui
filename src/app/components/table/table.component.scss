@@ -118,6 +118,26 @@
             border-bottom: 1px solid var(--disable);
             flex: 1;
             line-height: 30px;
+            padding-right: 10px;
+
+            .pickup-con{
+              display: inline-block;
+            }
+
+            .pickup-con:hover .undo{
+              display: inline !important;
+            }
+
+            .undo{
+              display: none;
+              margin-left: 10px;
+              cursor: pointer;
+              color: var(--secondary);
+
+              &:hover{
+                text-decoration: underline;
+              }
+            }
 
             .pickup{
               cursor: pointer;

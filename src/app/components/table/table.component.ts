@@ -34,10 +34,14 @@ export class TableComponent implements OnInit, OnChanges {
   @Output() handleDelete = new EventEmitter();
   @Output() handleSort = new EventEmitter();
   @Output() pickupMat ? = new EventEmitter();
+  @Output() undoPickup ? = new EventEmitter();
+  user: null;
 
   list: any;
 
-  constructor() { }
+  constructor() {
+    this.user = JSON.parse(localStorage.getItem('bill-user'));
+  }
 
   ngOnInit() {
     this.list = this.getList();
@@ -52,10 +56,10 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   getList() {
-    let res = [];
+    const res = [];
     this.data.forEach((item) => {
-      let row = [];
-     this.keys.forEach((key) => {
+      const row = [];
+      this.keys.forEach((key) => {
         row.push(item[key]);
       });
       res.push(row);
@@ -75,6 +79,10 @@ export class TableComponent implements OnInit, OnChanges {
 
   pickup(value) {
     this.pickupMat.next(value);
+  }
+
+  undo(value) {
+    this.undoPickup.next(value);
   }
 
 }

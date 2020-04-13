@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonCompsModule } from '../../shared/commonComps';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 const DashboardRoutes: Routes = [
   {
@@ -17,6 +18,7 @@ const DashboardRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(DashboardRoutes),
     CommonCompsModule,
+    NgxEchartsModule
   ],
   exports: [DashboardComponent]
 })

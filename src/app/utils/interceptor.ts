@@ -33,7 +33,9 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
         return next.handle(request).pipe(
             catchError(response => {
-                this.router.navigate(['/login']);
+                if (response.status === 403) {
+                    this.router.navigate(['/login']);
+                }
                 return throwError(response);
             }),
             map((event: HttpEvent<any>) => {

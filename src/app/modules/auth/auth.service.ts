@@ -30,6 +30,7 @@ export class AuthService {
       password,
       mail,
       code,
+      createDate: Date.now(),
     });
   }
 

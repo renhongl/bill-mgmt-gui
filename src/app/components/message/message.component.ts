@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-message',
@@ -13,11 +13,23 @@ export class MessageComponent implements OnInit {
   msg = '';
   type = 'success';
   timer = null;
+  @Output() undoHandle ? = new EventEmitter();
+  @Input() showUndo = false;
 
   constructor() { }
 
   ngOnInit() {
+    const message = this.message.nativeElement;
+    message.addEventListener('mouseenter', (e) => {
+      clearTimeout(this.timer);
+    });
+    message.addEventListener('mouseout', (e) => {
+      this.hide();
+    });
+  }
 
+  undo() {
+    this.undoHandle.next();
   }
 
   open(msg: string, type: string) {

@@ -35,13 +35,14 @@ export class AccountService {
   updateAccount(user: any) {
     const id = JSON.parse(localStorage.getItem('bill-user'))._id;
     const postData = user;
+    postData.id = id;
     const headers = new HttpHeaders({
       token: localStorage.getItem('bill-token'),
     });
     const options = {
       headers,
      };
-    return this.http.put(`${URL.USER}/${id}`, postData, options);
+    return this.http.put(`${URL.USER}/null`, postData, options);
   }
 
 }

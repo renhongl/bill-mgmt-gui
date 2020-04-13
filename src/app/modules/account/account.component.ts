@@ -16,11 +16,15 @@ export class AccountComponent implements OnInit {
   src = SERVER + '/' + JSON.parse(localStorage.getItem('bill-user')).avator;
   user = null;
   @ViewChild('message', {static: false}) message;
+  username = '';
+  mail = '';
 
   constructor(private accSer: AccountService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('bill-user'));
+    this.username = this.user.username;
+    this.mail = this.user.mail;
   }
 
   changeAvator(e) {
@@ -31,17 +35,27 @@ export class AccountComponent implements OnInit {
     });
   }
 
+  changeName(e) {
+    this.username = e.target.value;
+  }
+
+  changeMail(e) {
+    this.mail = e.target.value;
+  }
+
   saveAccount() {
     const user = {
       avator: this.avator,
+      username: this.username,
+      mail: this.mail,
     };
     this.accSer.updateAccount(user).subscribe((result: Success) => {
       if (result.code === 200) {
         this.message.open('更新账号成功', 'success');
-        this.accSer.getUser().subscribe((result: Success) => {
-          this.avator = result.data.avator;
-          this.src = SERVER + '/' + result.data.avator;
-          localStorage.setItem('bill-user', JSON.stringify(result.data));
+        this.accSer.getUser().subscribe((res: Success) => {
+          this.avator = res.data.avator;
+          this.src = SERVER + '/' + res.data.avator;
+          localStorage.setItem('bill-user', JSON.stringify(res.data));
         });
       }
     });

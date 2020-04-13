@@ -12,13 +12,13 @@
         <app-button class="create" height="25px" width="30px" (click)="addRow()">
           <i class="material-icons-round">add</i>
         </app-button>
-        <app-button class="download" height="25px" width="30px" (click)="download()">
+        <app-button *ngIf="user.auth === 0" class="download" height="25px" width="30px" (click)="download()">
           <i class="material-icons-round">download</i>
         </app-button>
       </div>
       <br>
       <app-table [asc]="asc" [sortKey]="sortKey" [data]="list" [colums]="colums" [keys]="keys"
-        (handleSort)="changeSortKey($event)" (pickupMat)="pickupMat($event)" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)">
+        (handleSort)="changeSortKey($event)" (undoPickup)="undoPickup($event)" (pickupMat)="pickupMat($event)" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)">
       </app-table>
 
       <app-pagination (handleChange)="pageChange($event)" [total]="totalRecords" [current]="index" [limit]="total">
@@ -26,6 +26,7 @@
     </div>
   </app-card>
   <app-message [delay]="5000" position="top right" #message></app-message>
+  <!-- <app-message [showUndo]="true" (undoHandle)="undoPickup()" [delay]="5000" position="top right" #messagePickup></app-message> -->
   <app-drawer [class.active]="drawer" width="30%" height="350px">
     <div class="title">
       {{title}}
@@ -46,8 +47,8 @@
       <div class="key">所属老师</div>
       <app-select [disabled]="true" width="100%" [items]="teaArr" [value]="getTeacherName()" (handleChange)="changeTeacher($event)">
       </app-select>
-      <div class="key">价格</div>
-      <app-input [value]="current.price" width="100%" (handleChange)="changePrice($event)"></app-input>
+      <div class="key" *ngIf="user.auth === 0">价格</div>
+      <app-input  *ngIf="user.auth === 0" [value]="current.price" width="100%" (handleChange)="changePrice($event)"></app-input>
       <br>
       <app-button color="primary" width="100%" height="30px" (click)="submit()">提交</app-button>
     </div>

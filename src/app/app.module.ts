@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { HttpConfigInterceptor } from './utils/interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -32,7 +33,7 @@ const appRoutes: Routes = [
         useHash: true,
       }
     ),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {

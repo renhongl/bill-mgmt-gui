@@ -11,8 +11,8 @@ import { StudentService } from '../student/student.service';
 })
 export class MaterialComponent implements OnInit {
 
-  colums = ['ID', '姓名', '内容', '电话', '学校', '老师', '价格', '创建时间', '取走时间'];
-  keys = ['id', 'name', 'content', 'phone', 'uni', 'teacher', 'price', 'createTimeStr', 'pickUpTimeStr'];
+  colums: string[];
+  keys: string[];
   list = [];
   index = 0;
   total = 10;
@@ -40,17 +40,25 @@ export class MaterialComponent implements OnInit {
   currentStudent = null;
   currentTeacher = null;
   currentUni = null;
+  user = null;
 
-  constructor(private matSer: MaterialService, private uniSer: UniversityService, private stuSer: StudentService) { }
+  constructor(private matSer: MaterialService, private uniSer: UniversityService, private stuSer: StudentService) {
+    this.user = JSON.parse(localStorage.getItem('bill-user'));
+    if (this.user.auth !== 0) {
+      this.colums = ['ID', '姓名', '内容', '创建时间'];
+      this.keys = ['id', 'name', 'content', 'createTimeStr'];
+    } else {
+      this.colums = ['ID', '姓名', '内容', '电话', '学校', '老师', '价格', '创建时间', '取走时间'];
+      this.keys = ['id', 'name', 'content', 'phone', 'uni', 'teacher', 'price', 'createTimeStr', 'pickUpTimeStr'];
+    }
+  }
 
   @ViewChild('message', { static: false }) message;
+  // @ViewChild('messagePickup', { static: false }) messagePickup;
   @ViewChild('dialogRef', { static: false }) dialogRef;
 
   ngOnInit() {
     this.search();
-    // setTimeout(() => {
-    //   this.jsonToCSVConvertor(this.list, 'Report', true);
-    // }, 5000);
   }
 
   changeSortKey(value) {
@@ -67,7 +75,24 @@ export class MaterialComponent implements OnInit {
     this.searchStudent(row[3], () => {
       this.matSer.updateMaterial(this.current.id, this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price, Date.now().toString()).subscribe((result: Success) => {
         if (result.code === 200) {
-          this.message.open(`更新 [${row[1]}] 成功`, 'success');
+          this.message.open(`更新 [${this.current.content}] 成功`, 'success');
+          this.search();
+        } else {
+          this.message.open(result.message, 'error');
+        }
+      });
+    });
+    this.current.id = row[0];
+    this.current.content = row[2];
+    this.current.phone = row[3];
+    this.current.price = row[6];
+  }
+
+  undoPickup(row) {
+    this.searchStudent(row[3], () => {
+      this.matSer.updateMaterial(this.current.id, this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price, '').subscribe((result: Success) => {
+        if (result.code === 200) {
+          this.message.open(`撤销 [${this.current.content}] 成功`, 'success');
           this.search();
         } else {
           this.message.open(result.message, 'error');
@@ -125,9 +150,7 @@ export class MaterialComponent implements OnInit {
     this.currentUni = null;
   }
 
-  changeName(e) {
-    // this.current.name = e.target.value;
-  }
+  changeName(e) {}
 
   changeContent(e) {
     this.current.content = e.target.value;
@@ -143,7 +166,6 @@ export class MaterialComponent implements OnInit {
       const data = result.data;
       if (data.length === 1) {
         this.current.student = data[0]._id,
-        // this.current.name = data[0].name;
         this.current.uni = data[0].uni._id;
         this.current.teacher = data[0].teacher._id;
         this.currentStudent = data[0];
@@ -185,9 +207,7 @@ export class MaterialComponent implements OnInit {
     return this.currentUni.name;
   }
 
-  changeTeacher(value) {
-
-  }
+  changeTeacher(value) {}
 
   download() {
     const now = Date.now();
@@ -201,23 +221,22 @@ export class MaterialComponent implements OnInit {
         createTime: item.createTimeStr,
         pickUpTime: item.pickUpTimeStr || '未取走',
         price: item.price,
-      }
+      };
     });
-    console.log(JSON.stringify(list));
     this.exportCSVFile({
       uni: '学校',
       teacher: '老师',
-      name: '姓名', 
+      name: '姓名',
       phone: '电话',
-      content: '内容', 
-      createTime: '创建日期', 
-      pickUpTime: '取走日期', 
-      price: '价格', 
+      content: '内容',
+      createTime: '创建日期',
+      pickUpTime: '取走日期',
+      price: '价格',
     }, list, now + '');
   }
 
   convertToCSV(objArray) {
-    let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    const array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
     let str = '';
 
     for (let i = 0; i < array.length; i++) {
@@ -239,23 +258,19 @@ export class MaterialComponent implements OnInit {
       items.unshift(headers);
     }
 
-    // Convert Object to JSON
-    let jsonObject = JSON.stringify(items);
-
-    let csv = this.convertToCSV(jsonObject);
-
-    let exportedFilenmae = '报告-' + fileTitle + '.csv' || 'export.csv';
-
-    let blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;\uFEFF' });
+    const jsonObject = JSON.stringify(items);
+    const csv = this.convertToCSV(jsonObject);
+    const exportedFilenmae = '报告-' + fileTitle + '.csv' || 'export.csv';
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;\uFEFF' });
     if (navigator.msSaveBlob) { // IE 10+
       navigator.msSaveBlob(blob, exportedFilenmae);
     } else {
-      let link = document.createElement("a");
+      const link = document.createElement('a');
       if (link.download !== undefined) { // feature detection
         // Browsers that support HTML5 download attribute
-        let url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
-        link.setAttribute("download", exportedFilenmae);
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', exportedFilenmae);
         link.style.visibility = 'hidden';
         document.body.appendChild(link);
         link.click();
@@ -336,6 +351,17 @@ export class MaterialComponent implements OnInit {
     this.dialogRef.open();
   }
 
+  getDateTimeFormat(date: Date) {
+    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${this.addZero(date.getHours())}:${this.addZero(date.getMinutes())}`;
+  }
+
+  addZero(num) {
+    if (num < 10) {
+      return '0' + num;
+    }
+    return num;
+  }
+
   search() {
     this.matSer.searchMaterial(this.index, this.total, this.searchWord, this.sortKey, this.asc).subscribe((result: any) => {
       if (result.code === 200) {
@@ -345,12 +371,12 @@ export class MaterialComponent implements OnInit {
           let pickUpDate = '';
           if (item.createTime) {
             const d = new Date(Number(item.createTime));
-            createDate = d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+            createDate = this.getDateTimeFormat(d);
           }
 
           if (item.pickUpTime) {
             const d = new Date(Number(item.pickUpTime));
-            pickUpDate = d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+            pickUpDate = this.getDateTimeFormat(d);
           }
 
           return {
@@ -370,6 +396,4 @@ export class MaterialComponent implements OnInit {
       }
     });
   }
-
-
 }
