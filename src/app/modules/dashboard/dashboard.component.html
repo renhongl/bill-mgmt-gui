@@ -1,4 +1,51 @@
 <div class="dashboard" *ngIf="user.auth === 0">
-  <div echarts [options]="chartOption" class="demo-chart"></div>
+  <div class="count-con">
+    <span class="total">
+      总件:965
+    </span>
+    <span class="pickedup">取走:515</span>
+    <span class="unpickup">未取走:371</span>
+    <span class="date">2020-1-1至今</span>
+  </div>
+  <div class="count-con">
+    <span class="total">
+      总件:965
+    </span>
+    <span class="pickedup">取走:515</span>
+    <span class="unpickup">未取走:371</span>
+    <span class="date">2020-1-1至今</span>
+  </div>
+  <div class="count-con">
+    <span class="total">
+      总件:965
+    </span>
+    <span class="pickedup">取走:515</span>
+    <span class="unpickup">未取走:371</span>
+    <span class="date">2020-1-1至今</span>
+  </div>
+  <div class="count-con">
+    <span class="total">
+      总件:965
+    </span>
+    <span class="pickedup">取走:515</span>
+    <span class="unpickup">未取走:371</span>
+    <span class="date">2020-1-1至今</span>
+  </div>
+ 
+  <div class="chart-con">
+    <h4>老师去年总件数</h4>
+    <div echarts [options]="chartOption" class="chart"></div>
+  </div>
+  <div class="chart-con">
+    <h4>学校去年总件数</h4>
+    <div echarts [options]="chartOption" class="chart"></div>
+  </div>
+  <div class="chart-con">
+    <h4>老师上个月总件数</h4>
+    <div echarts [options]="chartOption" class="chart"></div>
+  </div>
+  <div class="chart-con">
+    <h4>学生上个月总件数</h4>
+    <div echarts [options]="chartOption" class="chart"></div>
+  </div>
 </div>
-  

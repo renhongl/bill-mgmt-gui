@@ -1,17 +1,85 @@
-
-
 .dashboard {
   width: 100%;
   padding-top: 20px;
   height: calc(100% - 50px);
-  overflow: auto;
-  display: flex;
-  justify-content: space-around;
-  // padding: 20px 20px;
-  flex-wrap: wrap;
+  overflow: hidden;
+  padding-bottom: 200px;
 
-  .demo-chart{
-    width: 400px;
-    height: 300px;
+  .count-con {
+    width: 22%;
+    float: left;
+    height: 100px;
+    margin: 0.5%;
+    border-radius: 5px;
+    position: relative;
+    color: #fff;
   }
+
+  span.total {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    font-size: 1.8vw;
+  }
+
+  span.pickedup {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    font-size: 1.1vw;
+  }
+
+  span.date {
+    position: absolute;
+    right: 20px;
+    font-size: 0.8vw;
+    top: 18px;
+  }
+
+  span.unpickup {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.1vw;
+  }
+
+  .count-con:nth-child(1) {
+    background: #c067d0;
+    margin-left: 30px;
+    
+  }
+
+  .count-con:nth-child(2) {
+    background: #03a9f4;
+  }
+
+  .count-con:nth-child(3) {
+    background: #ff9800;
+  }
+
+  .count-con:nth-child(4) {
+    background: #ff5722;
+  }
+
+  .chart-con {
+    width: 48%;
+    height: 45%;
+    float: left;
+    margin-top: 40px;
+
+    h4 {
+      height: 30px;
+      font-size: 14px;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .chart {
+      width: 100%;
+      height: calc(100% - 0px);
+      float: left;
+    }
+  }
+
+
 }
