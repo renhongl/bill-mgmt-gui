@@ -135,7 +135,7 @@ export class DashboardComponent implements OnInit {
   }
 
   convertChartData(data, xAxisData) {
-    return xAxisData.map((i) => data[i]);
+    return xAxisData.map((i) => data[i] || 0);
   }
 
   getSeries(data, xAxisData) {
