@@ -22,5 +22,10 @@ export default {
     MATERIAL: SERVER + '/material',
     MATERIAL_SEARCH: SERVER + '/material/search',
     MATERIAL_GET: SERVER + '/material',
+    MATERIAL_TOTAL: SERVER + '/material/total',
+    MATERIAL_TOP_STUDENT: SERVER + '/material/top/student',
+    MATERIAL_TOP_TEACHER: SERVER + '/material/top/teacher',
+    MATERIAL_TOP_UNI: SERVER + '/material/top/university',
+    MATERIAL_TREND_UNI: SERVER + '/material/trend/university'
 };
 

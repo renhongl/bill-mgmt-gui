@@ -1,51 +1,51 @@
-<div class="dashboard" *ngIf="user.auth === 0">
-  <div class="count-con">
+<div class="dashboard" *ngIf="user && user.auth === 0">
+  <div class="count-con" *ngIf="totalCount">
     <span class="total">
-      总件:965
+      总件: {{totalCount.total}}
     </span>
-    <span class="pickedup">取走:515</span>
-    <span class="unpickup">未取走:371</span>
-    <span class="date">2020-1-1至今</span>
+    <span class="pickedup">取走: {{totalCount.pickedup}}</span>
+    <span class="unpickup">未取走: {{totalCount.unPickup}}</span>
+    <span class="date">{{thisYearTimeStr}}-至今</span>
   </div>
-  <div class="count-con">
+  <div class="count-con" *ngIf="topStudent">
     <span class="total">
-      总件:965
+      {{topStudent.name}}(学生): {{topStudent.count}}
     </span>
-    <span class="pickedup">取走:515</span>
-    <span class="unpickup">未取走:371</span>
-    <span class="date">2020-1-1至今</span>
+    <span class="pickedup">取走: {{topStudent.pickedUpCount}}</span>
+    <span class="unpickup">未取走: {{topStudent.count - topStudent.pickedUpCount}}</span>
+    <span class="date">{{thisYearTimeStr}}-至今</span>
   </div>
-  <div class="count-con">
+  <div class="count-con" *ngIf="topTeacher">
     <span class="total">
-      总件:965
+      {{topTeacher.name}}(老师): {{topTeacher.count}}
     </span>
-    <span class="pickedup">取走:515</span>
-    <span class="unpickup">未取走:371</span>
-    <span class="date">2020-1-1至今</span>
+    <span class="pickedup">取走: {{topTeacher.pickedUpCount}}</span>
+    <span class="unpickup">未取走: {{topTeacher.count - topTeacher.pickedUpCount}}</span>
+    <span class="date">{{thisYearTimeStr}}-至今</span>
   </div>
-  <div class="count-con">
+  <div class="count-con" *ngIf="topUni">
     <span class="total">
-      总件:965
+      {{topUni.name}}: {{topUni.count}}
     </span>
-    <span class="pickedup">取走:515</span>
-    <span class="unpickup">未取走:371</span>
-    <span class="date">2020-1-1至今</span>
+    <span class="pickedup">取走: {{topUni.pickedUpCount}}</span>
+    <span class="unpickup">未取走: {{topUni.count - topUni.pickedUpCount}}</span>
+    <span class="date">{{thisYearTimeStr}}-至今</span>
   </div>
  
   <div class="chart-con">
-    <h4>老师去年总件数</h4>
-    <div echarts [options]="chartOption" class="chart"></div>
+    <h4>学校今年总件数</h4>
+    <div echarts [options]="trendMonthlyUnichartOption" class="chart"></div>
   </div>
   <div class="chart-con">
-    <h4>学校去年总件数</h4>
-    <div echarts [options]="chartOption" class="chart"></div>
+    <h4>学校这个月总件数</h4>
+    <div echarts [options]="trendDaylyUnichartOption" class="chart"></div>
   </div>
-  <div class="chart-con">
+  <!-- <div class="chart-con">
     <h4>老师上个月总件数</h4>
     <div echarts [options]="chartOption" class="chart"></div>
   </div>
   <div class="chart-con">
     <h4>学生上个月总件数</h4>
     <div echarts [options]="chartOption" class="chart"></div>
-  </div>
+  </div> -->
 </div>

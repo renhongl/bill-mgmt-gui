@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router) {
     const user = JSON.parse(localStorage.getItem('bill-user'));
-    if (user.auth !== 0) {
+    if (user && user.auth !== 0) {
       this.nameArr = ['材料管理', '账号管理'];
       this.iconArr = ['assignment', 'person'];
       this.pathArr = ['/material', '/account'];

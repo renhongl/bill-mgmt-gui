@@ -35,7 +35,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Output() handleSort = new EventEmitter();
   @Output() pickupMat ? = new EventEmitter();
   @Output() undoPickup ? = new EventEmitter();
-  user: null;
+  user: any;
 
   list: any;
 

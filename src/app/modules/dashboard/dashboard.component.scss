@@ -1,52 +1,73 @@
+@media only screen and (max-width: 992px) {
+  .dashboard {
+
+    .count-con {
+      width: 90% !important;
+      margin-left: 0 !important;
+      margin: 20px auto !important;
+      float: none !important;
+    }
+
+    .chart-con {
+      width: 90% !important;
+      margin-left: 0 !important;
+      margin: 20px auto !important;
+      float: none !important;
+      height: 300px !important;
+      margin-bottom: 20px !important;
+    }
+  }
+}
+
+
 .dashboard {
   width: 100%;
   padding-top: 20px;
-  height: calc(100% - 50px);
   overflow: hidden;
-  padding-bottom: 200px;
 
   .count-con {
     width: 22%;
     float: left;
     height: 100px;
-    margin: 0.5%;
+    margin: 0.65%;
     border-radius: 5px;
     position: relative;
     color: #fff;
+    box-shadow: var(--shadow);
   }
 
   span.total {
     position: absolute;
     left: 20px;
     top: 10px;
-    font-size: 1.8vw;
+    font-size: 18px;
   }
 
   span.pickedup {
     position: absolute;
     left: 20px;
     bottom: 20px;
-    font-size: 1.1vw;
+    font-size: 16px;
   }
 
   span.date {
     position: absolute;
     right: 20px;
-    font-size: 0.8vw;
-    top: 18px;
+    font-size: 10px;
+    top: 15px;
   }
 
   span.unpickup {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    font-size: 1.1vw;
+    font-size: 16px;
   }
 
   .count-con:nth-child(1) {
     background: #c067d0;
-    margin-left: 30px;
-    
+    margin-left: 4%;
+
   }
 
   .count-con:nth-child(2) {
@@ -62,16 +83,22 @@
   }
 
   .chart-con {
-    width: 48%;
-    height: 45%;
+    width: 44%;
+    height: 300px;
     float: left;
     margin-top: 40px;
+    box-shadow: var(--shadow);
+    margin-left: 4%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px 0;
 
     h4 {
       height: 30px;
       font-size: 14px;
       line-height: 30px;
       text-align: center;
+      color: var(--default);
     }
 
     .chart {
@@ -80,6 +107,4 @@
       float: left;
     }
   }
-
-
 }

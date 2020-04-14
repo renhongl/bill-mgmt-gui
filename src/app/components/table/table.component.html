@@ -16,7 +16,7 @@
             </i>
           </span>
         </div>
-        <div class="action-btn th" *ngIf="user.auth === 0 && (edit || delete)">
+        <div class="action-btn th" *ngIf="user && user.auth === 0 && (edit || delete)">
           <span>操作</span>
         </div>
       </div>
@@ -31,7 +31,7 @@
           <span *ngIf="colums[i] === '创建时间'" [title]="name">{{name}}</span>
           <span *ngIf="colums[i] !== '取走时间' && colums[i] !== '创建时间'">{{name}}</span>
         </span>
-        <span class="td action-btn" *ngIf="user.auth === 0 && (edit || delete)">
+        <span class="td action-btn" *ngIf="user && user.auth === 0 && (edit || delete)">
           <span class="action">
             <app-button  (click)="editRow(item)" size="small" width="20px" height="20px" *ngIf="edit">
               <i class="material-icons-round">edit</i>

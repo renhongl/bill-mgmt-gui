@@ -44,7 +44,7 @@ export class MaterialComponent implements OnInit {
 
   constructor(private matSer: MaterialService, private uniSer: UniversityService, private stuSer: StudentService) {
     this.user = JSON.parse(localStorage.getItem('bill-user'));
-    if (this.user.auth !== 0) {
+    if (this.user && this.user.auth !== 0) {
       this.colums = ['ID', '姓名', '内容', '创建时间'];
       this.keys = ['id', 'name', 'content', 'createTimeStr'];
     } else {
