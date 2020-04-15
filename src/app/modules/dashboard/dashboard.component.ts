@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
   user: any;
   trendMonthlyUnichartOption: any;
   trendDaylyUnichartOption: any;
+  trendMonthlyTeacherchartOption: any;
+  trendDaylyTeacherchartOption: any;
   totalCount: any;
   thisMonthTimeStr: string;
   thisMonthTimeStamp: string;
@@ -49,6 +51,8 @@ export class DashboardComponent implements OnInit {
     this.initTopUni();
     this.initTrendMonthlyUni();
     this.initTrendDaylyUni();
+    this.initTrendMonthlyTeacher();
+    this.initTrendDaylyTeacher();
   }
 
   getDaysInMonth(month, year) {
@@ -63,6 +67,27 @@ export class DashboardComponent implements OnInit {
       }
     }
     return n;
+  }
+
+  initTrendMonthlyTeacher() {
+    this.dashSer.getTrendTeacherMaterial(this.thisYearTimeStamp, true).subscribe((result: any) => {
+      const monthes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      this.trendMonthlyTeacherchartOption = this.getOptions(monthes, result.data);
+      this.trendMonthlyTeacherchartOption.xAxis.data = this.trendMonthlyTeacherchartOption.xAxis.data.map((month) => month + '月');
+    });
+  }
+
+  initTrendDaylyTeacher() {
+    this.dashSer.getTrendTeacherMaterial(this.thisMonthTimeStamp, false).subscribe((result: any) => {
+      const date = new Date(Number(this.thisMonthTimeStamp));
+      const len = this.getDaysInMonth(date.getMonth() + 1, date.getFullYear());
+      const days = [];
+      for (let i = 1; i <= len; i++) {
+        days.push(i);
+      }
+      this.trendDaylyTeacherchartOption = this.getOptions(days, result.data);
+      this.trendDaylyTeacherchartOption.xAxis.data = this.trendDaylyTeacherchartOption.xAxis.data.map((month) => month + '日');
+    });
   }
 
   initTrendMonthlyUni() {

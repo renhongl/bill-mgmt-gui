@@ -6,13 +6,13 @@
       <div class="search">
         <app-input placeholder="搜索样品内容" height="30px" width="200px" (handleChange)="changeSearchWord($event)">
         </app-input>
-        <app-button height="25px" width="30px">
+        <app-button color="primary" height="25px" width="30px">
           <i class="material-icons-round">search</i>
         </app-button>
-        <app-button class="create" height="25px" width="30px" (click)="addRow()">
+        <app-button color="primary" class="create" height="25px" width="30px" (click)="addRow()">
           <i class="material-icons-round">add</i>
         </app-button>
-        <app-button *ngIf="user && user.auth === 0" class="download" height="25px" width="30px" (click)="download()">
+        <app-button color="primary" *ngIf="user && user.auth === 0" class="download" height="25px" width="30px" (click)="download()">
           <i class="material-icons-round">download</i>
         </app-button>
       </div>

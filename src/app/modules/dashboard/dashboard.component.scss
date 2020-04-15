@@ -25,6 +25,11 @@
   padding-top: 20px;
   overflow: hidden;
 
+  .top{
+    height: 100px;
+    width: 100%;
+  }
+
   .count-con {
     width: 22%;
     float: left;
@@ -75,7 +80,7 @@
   }
 
   .count-con:nth-child(3) {
-    background: #ff9800;
+    background: #ffc107;
   }
 
   .count-con:nth-child(4) {

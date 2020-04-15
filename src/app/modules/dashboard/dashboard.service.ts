@@ -58,4 +58,14 @@ export class DashboardService {
      };
     return this.http.get(`${URL.MATERIAL_TREND_UNI}/${timestamp}/${monthly}`, options);
   }
+
+  getTrendTeacherMaterial(timestamp: string, monthly: boolean) {
+    const headers = new HttpHeaders({
+      token: localStorage.getItem('bill-token'),
+    });
+    const options = {
+      headers,
+     };
+    return this.http.get(`${URL.MATERIAL_TREND_TEACHER}/${timestamp}/${monthly}`, options);
+  }
 }
