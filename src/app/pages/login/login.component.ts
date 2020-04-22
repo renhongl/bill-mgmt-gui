@@ -24,6 +24,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('bill-password')) {
+      this.userName = localStorage.getItem('bill-username');
+      this.password = localStorage.getItem('bill-password');
+      this.remember = true;
+    }
   }
 
   onNameChange(e) {
@@ -76,6 +81,13 @@ export class LoginComponent implements OnInit {
 
   login(e) {
     this.loading = true;
+    if (this.remember) {
+      localStorage.setItem('bill-username', this.userName);
+      localStorage.setItem('bill-password', this.password);
+    } else {
+      localStorage.removeItem('bill-username');
+      localStorage.removeItem('bill-password');
+    }
     this.authSer.login(this.userName, this.password).subscribe((result: Success) => {
       this.loading = false;
       if (result.code === 200) {

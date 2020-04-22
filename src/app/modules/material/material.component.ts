@@ -71,6 +71,17 @@ export class MaterialComponent implements OnInit {
     this.search();
   }
 
+  updatePrice(row) {
+    this.matSer.updateMaterialPrice(row[0], row[6]).subscribe((result: any) => {
+      if (result.code === 200) {
+        this.message.open(`更新 [${row[2]}] 价格 成功`, 'success');
+        this.search();
+      } else {
+        this.message.open(result.message, 'error');
+      }
+    });
+  }
+
   pickupMat(row) {
     this.searchStudent(row[3], () => {
       this.matSer.updateMaterial(this.current.id, this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price, Date.now().toString()).subscribe((result: Success) => {

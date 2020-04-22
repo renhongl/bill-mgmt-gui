@@ -35,7 +35,7 @@ export class PopoverComponent implements OnInit {
       this.left = this.target.x;
     }
     this.top = this.target.y + this.target.height + 30;
-    document.addEventListener('click', (e) => {
+    document.body.addEventListener('click', (e) => {
       this.active = false;
       this.popoverRef.nativeElement.classList.remove('active');
     });

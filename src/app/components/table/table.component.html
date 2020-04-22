@@ -22,14 +22,15 @@
       </div>
     </div>
     <div class="tbody">
-      <div class="tr" *ngFor="let item of list">
+      <div class="tr" *ngFor="let item of list; let a = index;">
         <span class="td" *ngFor="let name of item; let i = index" [class.hide]="i === 0">
           <span  *ngIf="colums[i] === '取走时间'">
             <span class="pickup-con" *ngIf="name" [title]="name">{{name}}<span class="undo" (click)="undo(item)">撤销</span></span>
             <span class="pickup" *ngIf="!name" (click)="pickup(item)">取走</span>
           </span>
+          <app-input (handleChange)="changePrice($event)" [value]="name" [disabled]="a !== editIndex" *ngIf="colums[i] === '价格'" [title]="name" class="price" (dblclick)="editPriceDblClick(item)" (click)="editPriceClick($event)">{{name}}</app-input>
           <span *ngIf="colums[i] === '创建时间'" [title]="name">{{name}}</span>
-          <span *ngIf="colums[i] !== '取走时间' && colums[i] !== '创建时间'">{{name}}</span>
+          <span *ngIf="colums[i] !== '取走时间' && colums[i] !== '创建时间' && colums[i] !== '价格'">{{name}}</span>
         </span>
         <span class="td action-btn" *ngIf="user && user.auth === 0 && (edit || delete)">
           <span class="action">

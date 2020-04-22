@@ -11,7 +11,7 @@ export class CheckboxComponent implements OnInit {
   @Input() height = '25px';
   @Output() handleChange = new EventEmitter();
 
-  checked = false;
+  @Input() checked = false;
 
   constructor() { }
 

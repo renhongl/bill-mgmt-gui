@@ -40,25 +40,25 @@
 
             </div>
             <div class="quick-login">
-              <div class="default">
+              <!-- <div class="default">
                 <app-checkbox (handleChange)="onRemeberChange($event)">
-                  &nbsp;&nbsp;下次自动登录
+                  &nbsp;&nbsp;记住密码
                 </app-checkbox>
-              </div>
-              <div (click)="changeResister()">
+              </div> -->
+              <!-- <div (click)="changeResister()">
                 注册新账号
-              </div>
+              </div> -->
             </div>
           </div>
         </app-tab-panel>
         <app-tab-panel [active]="!qr">
           <div class="login-con" *ngIf="!qr">
-            <app-input placeholder="用户名" width="250px" height="35px" (handleChange)="onNameChange($event)"></app-input>
-            <app-input placeholder="密码" width="250px" height="35px" type="password"
+            <app-input [value]="userName || ''" placeholder="用户名" width="250px" height="35px" (handleChange)="onNameChange($event)"></app-input>
+            <app-input [value]="password || ''" placeholder="密码" width="250px" height="35px" type="password"
               (handleChange)="onPasswordChange($event)"></app-input>
             <div class="auto-login">
-              <app-checkbox (handleChange)="onRemeberChange($event)">
-                &nbsp;&nbsp;下次自动登录
+              <app-checkbox [checked]="remember" (handleChange)="onRemeberChange($event)" >
+                &nbsp;&nbsp;记住密码
               </app-checkbox>
             </div>
             <app-button color="primary" type="rect" width="250px" height="30px" (handleClick)="login($event)">

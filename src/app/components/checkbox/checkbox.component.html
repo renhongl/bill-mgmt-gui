@@ -1,4 +1,4 @@
-<div class="checkbox" (click)="onClick($event)">
+<div class="checkbox" [class.active]="checked" (click)="onClick($event)">
     <i [className]="checked ? 'material-icons-round checked' : 'material-icons-round'" [style.width]="width" [style.height]="height">check</i>
     <ng-content></ng-content>
 </div>

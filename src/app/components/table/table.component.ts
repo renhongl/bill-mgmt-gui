@@ -35,12 +35,26 @@ export class TableComponent implements OnInit, OnChanges {
   @Output() handleSort = new EventEmitter();
   @Output() pickupMat ? = new EventEmitter();
   @Output() undoPickup ? = new EventEmitter();
+  @Output() saveUpdate ? = new EventEmitter();
   user: any;
 
   list: any;
 
+  prevent = false;
+  timer = null;
+  editIndex = -1;
+
   constructor() {
     this.user = JSON.parse(localStorage.getItem('bill-user'));
+    document.body.addEventListener('click', (e) => {
+      if (this.editIndex !== -1) {
+        const target = e.target;
+        if (target.getAttribute('type') !== 'text') {
+          this.saveUpdate.next(this.list[this.editIndex]);
+          this.editIndex = -1;
+        }
+      }
+    });
   }
 
   ngOnInit() {
@@ -53,6 +67,36 @@ export class TableComponent implements OnInit, OnChanges {
 
   sortBack(value) {
     this.handleSort.next(value.replace('Str', ''));
+  }
+
+  doClickAction(e) {
+    e.stopPropagation();
+  }
+  doDoubleClickAction(item) {
+    this.list.forEach((one, index) => {
+      if (one[0] === item[0]) {
+        this.editIndex = index;
+      }
+    });
+  }
+
+  editPriceClick(e) {
+    this.timer = setTimeout(() => {
+      if (!this.prevent) {
+        this.doClickAction(e);
+      }
+      this.prevent = false;
+    }, 500);
+  }
+
+  editPriceDblClick(item) {
+    clearTimeout(this.timer);
+    this.prevent = true;
+    this.doDoubleClickAction(item);
+  }
+
+  changePrice(e) {
+    this.list[this.editIndex][6] = e.target.value;
   }
 
   getList() {

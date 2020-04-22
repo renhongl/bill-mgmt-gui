@@ -17,7 +17,7 @@
         </app-button>
       </div>
       <br>
-      <app-table [asc]="asc" [sortKey]="sortKey" [data]="list" [colums]="colums" [keys]="keys"
+      <app-table (saveUpdate)="updatePrice($event)" [asc]="asc" [sortKey]="sortKey" [data]="list" [colums]="colums" [keys]="keys"
         (handleSort)="changeSortKey($event)" (undoPickup)="undoPickup($event)" (pickupMat)="pickupMat($event)" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)">
       </app-table>
 
