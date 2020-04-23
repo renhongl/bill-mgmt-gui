@@ -8,6 +8,7 @@ export default {
     AUTH_LOGIN: SERVER + '/auth/login',
     AUTH_MAIL: SERVER + '/auth/mail',
     AUTH_REGISTER: SERVER + '/auth/register',
+    AUTH_KEEP_ALIVE: SERVER + '/auth/keepAlive',
     UNIVERSITY: SERVER + '/university',
     UNIVERSITY_SEARCH: SERVER + '/university/search',
     TEACHER_SEARCH_UNI: SERVER + '/teacher/search/uni',

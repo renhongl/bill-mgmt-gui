@@ -36,7 +36,8 @@
     </div>
     <div class="edit-con" *ngIf="current">
       <div class="key">样品内容</div>
-      <app-input [value]="current.content" width="100%" (handleChange)="changeContent($event)"></app-input>
+      <!-- <app-textarea></app-textarea> -->
+      <app-textarea [value]="current.content" width="calc(100% - 20px)" height="60px" (handleChange)="changeContent($event)"></app-textarea>
       <div class="key">手机号</div>
       <app-input [value]="current.phone" width="100%" (handleChange)="changePhone($event)"></app-input>
       <div class="key">学生姓名</div>

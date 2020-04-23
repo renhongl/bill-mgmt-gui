@@ -13,7 +13,7 @@
       </app-button>
     </div>
     <br>
-    <app-table [sortKey]="sortKey" [asc]="asc" (handleSort)="changeSortKey($event)" [data]="list" [colums]="colums" [keys]="keys" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)"></app-table>
+    <app-table [delete]="false" [sortKey]="sortKey" [asc]="asc" (handleSort)="changeSortKey($event)" [data]="list" [colums]="colums" [keys]="keys" (handleEdit)="editRow($event)" (handleDelete)="deleteRow($event)"></app-table>
 
     <app-pagination (handleChange)="pageChange($event)" [total]="totalRecords" [current]="index" [limit]="total"></app-pagination>
     </div>

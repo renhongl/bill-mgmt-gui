@@ -46,10 +46,9 @@ export class TableComponent implements OnInit, OnChanges {
 
   constructor() {
     this.user = JSON.parse(localStorage.getItem('bill-user'));
-    document.body.addEventListener('click', (e) => {
+    document.body.addEventListener('click', (e: any) => {
       if (this.editIndex !== -1) {
-        const target = e.target;
-        if (target.getAttribute('type') !== 'text') {
+        if (e.target.getAttribute('type') !== 'text') {
           this.saveUpdate.next(this.list[this.editIndex]);
           this.editIndex = -1;
         }

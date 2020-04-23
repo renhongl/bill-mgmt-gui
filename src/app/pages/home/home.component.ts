@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,10 @@ export class HomeComponent implements OnInit {
   iconArr: string[];
   pathArr: string[];
   index = 0;
+  timer = 1000 * 60 * 25;
+  // timer = 5000;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authSer: AuthService) {
     const user = JSON.parse(localStorage.getItem('bill-user'));
     if (user && user.auth !== 0) {
       this.nameArr = ['材料管理', '账号管理'];
@@ -25,6 +28,17 @@ export class HomeComponent implements OnInit {
       this.iconArr = ['home', 'assignment', 'account_balance', 'how_to_reg', 'face', 'person', 'people'];
       this.pathArr = ['/', '/material', '/university', '/teacher', '/student', '/account', '/user'];
     }
+    this.keepAlive();
+  }
+
+  keepAlive() {
+    setTimeout(() => {
+      this.authSer.keepAlive().subscribe((result: any) => {
+        console.log(result);
+        localStorage.setItem('bill-token', result.data.token);
+        this.keepAlive();
+      });
+    }, this.timer);
   }
 
   ngOnInit() {

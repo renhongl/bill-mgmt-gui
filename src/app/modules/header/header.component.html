@@ -4,8 +4,8 @@
   </div>
   <div class="tools">
     <app-button type="circle" width="30px" height="30px" (click)="changeTheme()">
-      <i class="material-icons-round" *ngIf="dark === 'dark'">brightness_4</i>
-      <i class="material-icons-round" *ngIf="dark !== 'dark'">brightness_7</i>
+      <i class="material-icons-round" *ngIf="dark !== 'dark'">brightness_4</i>
+      <i class="material-icons-round" *ngIf="dark === 'dark'">brightness_7</i>
     </app-button>
     <app-button type="circle" width="30px" height="30px" (click)="openAccount($event)">
       <!-- <i class="material-icons-round" #accountRef>account_circle</i> -->

@@ -74,7 +74,7 @@ export class MaterialComponent implements OnInit {
   updatePrice(row) {
     this.matSer.updateMaterialPrice(row[0], row[6]).subscribe((result: any) => {
       if (result.code === 200) {
-        this.message.open(`更新 [${row[2]}] 价格 成功`, 'success');
+        this.message.open(`更新 [${row[1]}] 的价格 成功`, 'success');
         this.search();
       } else {
         this.message.open(result.message, 'error');

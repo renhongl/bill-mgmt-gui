@@ -60,7 +60,11 @@ export class TeacherComponent implements OnInit {
     if (!this.current.uni) {
       return '';
     }
-    return this.uniArr.filter(item => item._id === this.current.uni)[0].name;
+    const res = this.uniArr.filter(item => item._id === this.current.uni);
+    if (res.length === 0) {
+      return '';
+    }
+    return res[0].name;
   }
 
   changeUni(value) {
@@ -170,15 +174,15 @@ export class TeacherComponent implements OnInit {
   }
 
   search() {
-    this.teaSer.searchTeacher(this.index, this.total, this.searchWord, this.sortKey, this.asc).subscribe((result: Success) => {
+    this.teaSer.searchTeacher(this.index, this.total, this.searchWord, this.sortKey, this.asc).subscribe((result: any) => {
       if (result.code === 200) {
-        this.totalRecords = result['total'];
+        this.totalRecords = result.total;
         console.log(JSON.stringify(result.data));
         this.list = result.data.map(item => {
           return {
             name: item.name,
             id: item._id,
-            uni: item.uni.name,
+            uni: item.uni ? item.uni.name : '[已删除]',
             phone: item.phone,
           };
         });

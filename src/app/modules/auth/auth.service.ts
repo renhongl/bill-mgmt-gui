@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import URL from '../../utils/url';
 
 @Injectable({
@@ -36,5 +36,19 @@ export class AuthService {
 
   logout(): void {
     
+  }
+
+  keepAlive() {
+    if (!localStorage.getItem('bill-user')) {
+      return;
+    }
+    const username = JSON.parse(localStorage.getItem('bill-user')).username;
+    const headers = new HttpHeaders({
+      token: localStorage.getItem('bill-token'),
+    });
+    const options = {
+      headers,
+     };
+    return this.http.post(URL.AUTH_KEEP_ALIVE, {username}, options);
   }
 }

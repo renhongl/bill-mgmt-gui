@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CardComponent } from '../components/card/card.component';
 import { ButtonComponent } from '../components/button/button.component';
 import { InputComponent } from '../components/input/input.component';
+import { TextareaComponent } from '../components/textarea/textarea.component';
 import { MessageComponent } from '../components/message/message.component';
 import { LoadingComponent } from '../components/loading/loading.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
@@ -35,6 +36,7 @@ import { NavComponent } from '../components/nav/nav.component';
     CardComponent,
     ButtonComponent,
     InputComponent,
+    TextareaComponent,
     MessageComponent,
     LoadingComponent],
   imports: [
@@ -56,6 +58,7 @@ import { NavComponent } from '../components/nav/nav.component';
     CardComponent,
     ButtonComponent,
     InputComponent,
+    TextareaComponent,
     MessageComponent,
     LoadingComponent]
 })
