@@ -12,7 +12,7 @@
         <app-button color="primary" class="create" height="25px" width="30px" (click)="addRow()">
           <i class="material-icons-round">add</i>
         </app-button>
-        <app-button color="primary" *ngIf="user && user.auth === 0" class="download" height="25px" width="30px" (click)="download()">
+        <app-button color="primary" *ngIf="user && user.auth === 0" class="download" height="25px" width="30px" (click)="openDownload()">
           <i class="material-icons-round">download</i>
         </app-button>
       </div>
@@ -61,6 +61,25 @@
       <div>
         <app-button width="60px" height="25px" color="secondary" (click)="confirmDelete()">删除</app-button>
       <app-button width="60px" height="25px" color="default" (click)="closeDialog()">返回</app-button>
+      </div>
+    </div>
+  </app-dialog>
+  <app-dialog #downloadDialogRef width="400px" height="450px">
+    <div class="download-dialog-con">
+      <h4>下载报告</h4>
+      <div>
+        <span>创建时间:</span>
+        <span><input type="date" [value]="downloadDate" (change)="changeDownloadDate($event)"/></span>
+      </div>
+      <div>
+        <span>是否取走</span>
+        <span>
+          <app-select (handleChange)="changeDownloadType($event)" width="100%" [items]="['未取走', '已取走', '全部']" [value]="downloadType"></app-select>
+        </span>
+      </div>
+      <div class="actions">
+        <app-button width="60px" height="25px" color="primary" (click)="download()">下载</app-button>
+        <app-button width="60px" height="25px" color="default" (click)="closeDownloadDialog()">返回</app-button>
       </div>
     </div>
   </app-dialog>

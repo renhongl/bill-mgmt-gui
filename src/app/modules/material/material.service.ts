@@ -17,7 +17,7 @@ export class MaterialService {
     });
     const options = {
       headers,
-     };
+    };
     return this.http.put(URL.MATERIAL, {
       id,
       price,
@@ -30,7 +30,7 @@ export class MaterialService {
     });
     const options = {
       headers,
-     };
+    };
     return this.http.put(URL.MATERIAL, {
       id,
       student,
@@ -48,7 +48,7 @@ export class MaterialService {
     });
     const options = {
       headers,
-     };
+    };
     return this.http.post(URL.MATERIAL, {
       student,
       uni,
@@ -64,7 +64,7 @@ export class MaterialService {
     });
     const options = {
       headers,
-     };
+    };
     return this.http.post(URL.MATERIAL_SEARCH, {
       index,
       total,
@@ -80,7 +80,7 @@ export class MaterialService {
     });
     const options = {
       headers,
-     };
+    };
     return this.http.delete(`${URL.MATERIAL}/${id}`, options);
   }
 
@@ -90,7 +90,20 @@ export class MaterialService {
     });
     const options = {
       headers,
-     };
+    };
     return this.http.get(`${URL.MATERIAL_GET}/${id}`, options);
+  }
+
+  downloadMaterial(date: string, type: string) {
+    const headers = new HttpHeaders({
+      token: localStorage.getItem('bill-token'),
+    });
+    const options = {
+      headers,
+    };
+    return this.http.post(URL.MATERIAL_DOWNLOAD, {
+      date,
+      type,
+    }, options);
   }
 }

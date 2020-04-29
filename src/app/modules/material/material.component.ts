@@ -42,6 +42,9 @@ export class MaterialComponent implements OnInit {
   currentUni = null;
   user = null;
 
+  downloadDate = '';
+  downloadType = '全部';
+
   constructor(private matSer: MaterialService, private uniSer: UniversityService, private stuSer: StudentService) {
     this.user = JSON.parse(localStorage.getItem('bill-user'));
     if (this.user && this.user.auth !== 0) {
@@ -56,6 +59,7 @@ export class MaterialComponent implements OnInit {
   @ViewChild('message', { static: false }) message;
   // @ViewChild('messagePickup', { static: false }) messagePickup;
   @ViewChild('dialogRef', { static: false }) dialogRef;
+  @ViewChild('downloadDialogRef', { static: false }) downloadDialogRef;
 
   ngOnInit() {
     this.search();
@@ -161,7 +165,7 @@ export class MaterialComponent implements OnInit {
     this.currentUni = null;
   }
 
-  changeName(e) {}
+  changeName(e) { }
 
   changeContent(e) {
     this.current.content = e.target.value;
@@ -177,7 +181,7 @@ export class MaterialComponent implements OnInit {
       const data = result.data;
       if (data.length === 1) {
         this.current.student = data[0]._id,
-        this.current.uni = data[0].uni._id;
+          this.current.uni = data[0].uni._id;
         this.current.teacher = data[0].teacher._id;
         this.currentStudent = data[0];
         this.currentTeacher = data[0].teacher;
@@ -218,32 +222,69 @@ export class MaterialComponent implements OnInit {
     return this.currentUni.name;
   }
 
-  changeTeacher(value) {}
+  changeTeacher(value) { }
+
+  changeDownloadDate(e) {
+    this.downloadDate = e.target.value;
+  }
+
+  changeDownloadType(value) {
+    this.downloadType = value;
+  }
+
+  openDownload() {
+    this.downloadDialogRef.open();
+  }
+
+  closeDownloadDialog() {
+    this.downloadDialogRef.close();
+  }
 
   download() {
-    const now = Date.now();
-    const list = this.list.map((item) => {
-      return {
-        uni: item.uni,
-        teacher: item.teacher,
-        name: item.name,
-        phone: item.phone,
-        content: item.content,
-        createTime: item.createTimeStr,
-        pickUpTime: item.pickUpTimeStr || '未取走',
-        price: item.price,
-      };
+    const type = this.downloadType;
+    const date = this.downloadDate;
+    const now = new Date();
+    const nowStr = now.toLocaleDateString() + now.toLocaleTimeString();
+    this.matSer.downloadMaterial(date, type).subscribe((result: any) => {
+      if (result.code === 200) {
+        const list = result.data.map((item) => {
+          let createDate = '';
+          let pickUpDate = '';
+          if (item.createTime) {
+            const d = new Date(item.createTime);
+            createDate = this.getDateTimeFormat(d);
+          }
+
+          if (item.pickUpTime) {
+            const d = new Date(item.pickUpTime);
+            pickUpDate = this.getDateTimeFormat(d);
+          }
+          return {
+            uni: item.uni.name,
+            teacher: item.teacher.name,
+            name: item.student.name,
+            phone: item.student.phone,
+            content: item.content,
+            createTime: createDate,
+            pickUpTime: pickUpDate || '未取走',
+            price: item.price,
+          };
+        });
+        this.exportCSVFile({
+          uni: '学校',
+          teacher: '老师',
+          name: '姓名',
+          phone: '电话',
+          content: '内容',
+          createTime: '创建日期',
+          pickUpTime: '取走日期',
+          price: '价格',
+        }, list, nowStr);
+        this.closeDownloadDialog();
+      } else {
+        this.message.open('warning', '下载失败，请重新下载');
+      }
     });
-    this.exportCSVFile({
-      uni: '学校',
-      teacher: '老师',
-      name: '姓名',
-      phone: '电话',
-      content: '内容',
-      createTime: '创建日期',
-      pickUpTime: '取走日期',
-      price: '价格',
-    }, list, now + '');
   }
 
   convertToCSV(objArray) {
@@ -381,12 +422,12 @@ export class MaterialComponent implements OnInit {
           let createDate = '';
           let pickUpDate = '';
           if (item.createTime) {
-            const d = new Date(Number(item.createTime));
+            const d = new Date(item.createTime);
             createDate = this.getDateTimeFormat(d);
           }
 
           if (item.pickUpTime) {
-            const d = new Date(Number(item.pickUpTime));
+            const d = new Date(item.pickUpTime);
             pickUpDate = this.getDateTimeFormat(d);
           }
 

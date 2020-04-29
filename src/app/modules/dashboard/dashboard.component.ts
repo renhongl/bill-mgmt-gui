@@ -160,7 +160,7 @@ export class DashboardComponent implements OnInit {
   }
 
   convertChartData(data, xAxisData) {
-    return xAxisData.map((i) => data[i] || 0);
+    return xAxisData.map((i) => data[i]);
   }
 
   getSeries(data, xAxisData) {

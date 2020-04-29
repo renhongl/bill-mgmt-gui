@@ -28,7 +28,7 @@ export default {
     MATERIAL_TOP_TEACHER: SERVER + '/material/top/teacher',
     MATERIAL_TOP_UNI: SERVER + '/material/top/university',
     MATERIAL_TREND_UNI: SERVER + '/material/trend/university',
-    MATERIAL_TREND_TEACHER: SERVER + '/material/trend/teacher'
-
+    MATERIAL_TREND_TEACHER: SERVER + '/material/trend/teacher',
+    MATERIAL_DOWNLOAD: SERVER + '/material/download',
 };
 
