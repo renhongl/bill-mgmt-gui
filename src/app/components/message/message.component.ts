@@ -34,7 +34,11 @@ export class MessageComponent implements OnInit {
 
   open(msg: string, type: string) {
     if (this.timer) {
-      return;
+      const message = this.message.nativeElement;
+      const [p1, p2] = this.position.split(' ');
+      message.style[p2] = '-100%';
+      clearTimeout(this.timer);
+      this.timer = null;
     };
     this.msg = msg;
     this.type = type;

@@ -139,6 +139,12 @@ export class StudentComponent implements OnInit {
   }
 
   submit() {
+    if (!this.current.name || !this.current.name.trim()) {
+      return this.message.open('学生姓名不能为空', 'error');
+    }
+    if (!this.current.phone || !this.current.phone.trim()) {
+      return this.message.open('手机号码不能为空。', 'error');
+    }
     if (this.title === '新增学生') {
       this.studentSer.createStudent(this.current.name, this.current.uni, this.current.teacher, this.current.phone).subscribe((result: Success) => {
         if (result.code === 200) {
@@ -202,6 +208,8 @@ export class StudentComponent implements OnInit {
       if (result.code === 200) {
         this.message.open(`删除 [${this.current.name}] 成功`, 'success');
         this.search();
+      } else {
+        this.message.open(result.message, 'error');
       }
     });
   }

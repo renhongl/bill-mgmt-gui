@@ -8,7 +8,7 @@
         <app-input placeholder="密码" width="250px" height="35px" type="password"
           (handleChange)="onPasswordChange($event)"></app-input>
         <app-input placeholder="重复密码" width="250px" height="35px" type="password"
-          (handleChange)="onPasswordChange($event)"></app-input>
+          (handleChange)="onPassword2Change($event)"></app-input>
         <app-input placeholder="邮箱" width="250px" height="35px" type="text" (handleChange)="onMailChange($event)">
         </app-input>
         <div class="verify">
@@ -30,10 +30,10 @@
     <app-card slot="div" *ngIf="!register">
       <div class="register-con">
         <h3>账单管理系统</h3>
-        <div class="login-tabs">
+        <!-- <div class="login-tabs">
           <app-tabs [active]="qr" (click)="changeQr()">微信登陆</app-tabs>
           <app-tabs [active]="!qr" (click)="changeQr()">账号密码登录</app-tabs>
-        </div>
+        </div> -->
         <app-tab-panel [active]="qr">
           <div class="login-con" *ngIf="qr">
             <div class="qr">

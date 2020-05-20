@@ -12,12 +12,13 @@ export class LoginComponent implements OnInit {
 
   userName: string;
   password: string;
+  password2: string;
   mail: string;
   code: string;
   @ViewChild('message', { static: false }) message;
   loading = false;
   remember = false;
-  qr = true;
+  qr = false;
   register = false;
 
   constructor(private authSer: AuthService, private router: Router) {
@@ -37,6 +38,10 @@ export class LoginComponent implements OnInit {
 
   onPasswordChange(e) {
     this.password = e.target.value;
+  }
+
+  onPassword2Change(e) {
+    this.password2 = e.target.value;
   }
 
   onRemeberChange(value) {
@@ -60,6 +65,9 @@ export class LoginComponent implements OnInit {
   }
 
   getVerifyCode() {
+    if (!this.userName || !this.mail || !this.userName.trim() || !this.mail.trim()) {
+      return this.message.open('用户名和邮箱不能为空。', 'error');
+    }
     this.authSer.getCode(this.userName, this.mail).subscribe((result: Success) => {
       if (result.code === 200) {
         this.message.open('验证码已发往你的邮箱，请在30分钟内使用。', 'success');
@@ -70,6 +78,15 @@ export class LoginComponent implements OnInit {
   }
 
   registerAccount() {
+    if (!this.userName || !this.userName.trim() || !this.mail || !this.mail.trim()) {
+      this.message.open('用户名和邮箱不能为空。', 'error');
+    }
+    if (this.password !== this.password2) {
+      this.message.open('两次密码不一致。', 'error');
+    }
+    if (!this.code || !this.code.trim()) {
+      this.message.open('验证码不能为空。', 'error');
+    }
     this.authSer.register(this.userName, this.password, this.mail, this.code).subscribe((result: Success) => {
       if (result.code === 200) {
         this.message.open('注册成功，请前往登录。', 'success');
@@ -80,6 +97,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(e) {
+    if (!this.userName || !this.password || !this.userName.trim() || !this.password.trim()) {
+      return this.message.open('用户名和密码不能为空。', 'error');
+    }
     this.loading = true;
     if (this.remember) {
       localStorage.setItem('bill-username', this.userName);

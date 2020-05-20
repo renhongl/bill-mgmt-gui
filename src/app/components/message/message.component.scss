@@ -13,6 +13,8 @@
   line-height: 30px;
   text-align: left;
   padding: 10px 10px;
+  display: flex;
+  align-items: center;
   color: #fff;
   box-shadow: var(--shadow);
   border-radius: 5px;
@@ -23,6 +25,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   // white-space: nowrap;
+
+  i{
+    margin-right: 10px;
+  }
 
   .undo{
     color: var(--default);
@@ -41,7 +47,7 @@
 }
 
 .success {
-  background: var(--primary);
+  background: green;
   box-shadow: var(--shadow);
 }
 
@@ -51,7 +57,7 @@
 }
 
 .infor {
-  background: #327edc;
+  background: var(--primary);
   box-shadow: var(--shadow);
 }
 

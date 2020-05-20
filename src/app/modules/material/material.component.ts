@@ -76,9 +76,12 @@ export class MaterialComponent implements OnInit {
   }
 
   updatePrice(row) {
+    if (!row) {
+      return this.message.open(`价格必须是数字`, 'error');
+    }
     this.matSer.updateMaterialPrice(row[0], row[6]).subscribe((result: any) => {
       if (result.code === 200) {
-        this.message.open(`更新 [${row[1]}] 的价格 成功`, 'success');
+        this.message.open(`更新价格成功`, 'success');
         this.search();
       } else {
         this.message.open(result.message, 'error');
@@ -90,7 +93,7 @@ export class MaterialComponent implements OnInit {
     this.searchStudent(row[3], () => {
       this.matSer.updateMaterial(this.current.id, this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price, Date.now().toString()).subscribe((result: Success) => {
         if (result.code === 200) {
-          this.message.open(`更新 [${this.current.content}] 成功`, 'success');
+          this.message.open(`取走材料成功`, 'success');
           this.search();
         } else {
           this.message.open(result.message, 'error');
@@ -107,7 +110,7 @@ export class MaterialComponent implements OnInit {
     this.searchStudent(row[3], () => {
       this.matSer.updateMaterial(this.current.id, this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price, '').subscribe((result: Success) => {
         if (result.code === 200) {
-          this.message.open(`撤销 [${this.current.content}] 成功`, 'success');
+          this.message.open(`撤销取走成功`, 'success');
           this.search();
         } else {
           this.message.open(result.message, 'error');
@@ -310,7 +313,8 @@ export class MaterialComponent implements OnInit {
       items.unshift(headers);
     }
 
-    const jsonObject = JSON.stringify(items);
+    const jsonObject = JSON.stringify(items).replace(/\\n/g, '');
+    console.log(jsonObject);
     const csv = this.convertToCSV(jsonObject);
     const exportedFilenmae = '报告-' + fileTitle + '.csv' || 'export.csv';
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;\uFEFF' });
@@ -332,10 +336,24 @@ export class MaterialComponent implements OnInit {
   }
 
   submit() {
+    if (!this.current.content || !this.current.content.trim()) {
+      return this.message.open('样品内容不能为空', 'error');
+    }
+    if (!this.current.phone || !this.current.phone.trim()) {
+      return this.message.open('手机号码不能为空', 'error');
+    }
+    if (this.current.price && this.current.price.trim()) {
+      if (Number.isNaN(Number(this.current.price.trim()))) {
+        return this.message.open(`价格必须是数字`, 'error');
+      }
+    }
+    if (!this.current.student || !this.current.student.trim()) {
+      return this.message.open('请输入正确的手机号', 'error');
+    }
     if (this.title === '新增样品') {
       this.matSer.createMaterial(this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price).subscribe((result: Success) => {
         if (result.code === 200) {
-          this.message.open(`添加 [${this.current.content}] 成功`, 'success');
+          this.message.open(`添加材料成功`, 'success');
           this.clearCurrent();
           this.search();
         } else {
@@ -345,7 +363,7 @@ export class MaterialComponent implements OnInit {
     } else {
       this.matSer.updateMaterial(this.current.id, this.current.student, this.current.teacher, this.current.uni, this.current.content, this.current.price).subscribe((result: Success) => {
         if (result.code === 200) {
-          this.message.open(`更新 [${this.current.content}] 成功`, 'success');
+          this.message.open(`更新材料成功`, 'success');
           this.search();
         } else {
           this.message.open(result.message, 'error');
@@ -388,7 +406,7 @@ export class MaterialComponent implements OnInit {
     this.dialogRef.close();
     this.matSer.deleteMaterial(this.current.id).subscribe((result: Success) => {
       if (result.code === 200) {
-        this.message.open(`删除 [${this.current.content}] 成功`, 'success');
+        this.message.open(`删除材料成功`, 'success');
         this.search();
       }
     });

@@ -57,7 +57,7 @@
   <app-dialog #dialogRef width="300px" height="150px">
     <div class="dialog-con">
       <h4>删除材料</h4>
-      <p *ngIf="current">请确定是否删除材料: <span class="name">{{current.content}}</span></p>
+      <p *ngIf="current">请确定是否删除该学生的材料: <span class="name">{{current.name}}</span></p>
       <div>
         <app-button width="60px" height="25px" color="secondary" (click)="confirmDelete()">删除</app-button>
       <app-button width="60px" height="25px" color="default" (click)="closeDialog()">返回</app-button>

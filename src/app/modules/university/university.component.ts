@@ -67,6 +67,9 @@ export class UniversityComponent implements OnInit {
   }
 
   submit() {
+    if (!this.current.name || !this.current.name.trim()) {
+      return this.message.open(`学校名称不能为空`, 'error');
+    }
     if (this.title === '新增学校') {
       this.uniSrc.createUni(this.current.name, this.current.address).subscribe((result: Success) => {
         if (result.code === 200) {

@@ -1,3 +1,7 @@
 <div [className]="'message ' + type + ' ' + position" [title]="msg" [class.undo]="showUndo" #message>
+    <i class="material-icons-round" *ngIf="type === 'infor'">infor</i>
+    <i class="material-icons-round" *ngIf="type === 'success'">done</i>
+    <i class="material-icons-round" *ngIf="type === 'error'">error</i>
+    <i class="material-icons-round" *ngIf="type === 'warning'">warning</i>
     {{msg}} <span *ngIf="showUndo" class="undo" (click)="undo()">撤销</span>
 </div>

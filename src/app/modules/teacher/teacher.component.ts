@@ -97,6 +97,9 @@ export class TeacherComponent implements OnInit {
   }
 
   submit() {
+    if (!this.current.name || !this.current.name.trim()) {
+      return this.message.open('老师姓名不能为空', 'error');
+    }
     if (this.title === '新增老师') {
       this.teaSer.createTeacher(this.current.name, this.current.uni, this.current.phone).subscribe((result: Success) => {
         if (result.code === 200) {
@@ -159,6 +162,8 @@ export class TeacherComponent implements OnInit {
       if (result.code === 200) {
         this.message.open(`删除 [${this.current.name}] 成功`, 'success');
         this.search();
+      } else {
+        this.message.open(result.message, 'error');
       }
     });
   }

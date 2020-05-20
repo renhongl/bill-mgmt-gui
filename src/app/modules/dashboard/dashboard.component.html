@@ -1,6 +1,6 @@
 <div class="dashboard" *ngIf="user && user.auth === 0">
   <div class="top">
-    <div class="count-con" *ngIf="totalCount">
+    <div class="count-con" *ngIf="totalCount && totalCount.total !== 0">
       <span class="total">
         总件: {{totalCount.total}}
       </span>

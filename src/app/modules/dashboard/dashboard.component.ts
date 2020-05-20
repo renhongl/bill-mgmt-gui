@@ -113,6 +113,9 @@ export class DashboardComponent implements OnInit {
 
   initTopUni() {
     this.dashSer.getTopUniMaterial(this.thisYearTimeStamp).subscribe((result: any) => {
+      if (!result.data) {
+        return;
+      }
       this.topUni = {
         name: result.data.name.split('-')[0],
         count: result.data.count,
@@ -123,6 +126,9 @@ export class DashboardComponent implements OnInit {
 
   initTopTeacher() {
     this.dashSer.getTopTeacherMaterial(this.thisYearTimeStamp).subscribe((result: any) => {
+      if (!result.data) {
+        return;
+      }
       this.topTeacher = {
         name: result.data.name.split('-')[0],
         count: result.data.count,
@@ -133,6 +139,9 @@ export class DashboardComponent implements OnInit {
 
   initTopStudent() {
     this.dashSer.getTopStudentMaterial(this.thisYearTimeStamp).subscribe((result: any) => {
+      if (!result.data) {
+        return;
+      }
       this.topStudent = {
         name: result.data.name.split('-')[0],
         count: result.data.count,
@@ -143,6 +152,9 @@ export class DashboardComponent implements OnInit {
 
   initPickupCount() {
     this.dashSer.getTotalMaterial(this.thisYearTimeStamp).subscribe((result: any) => {
+      if (!result.data) {
+        return;
+      }
       if (result.code === 200) {
         this.totalCount = {
           total: result.data.total,

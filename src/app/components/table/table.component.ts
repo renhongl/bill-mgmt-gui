@@ -49,6 +49,9 @@ export class TableComponent implements OnInit, OnChanges {
     document.body.addEventListener('click', (e: any) => {
       if (this.editIndex !== -1) {
         if (e.target.getAttribute('type') !== 'text') {
+          if (Number.isNaN(Number(this.list[this.editIndex][6]))) {
+            return this.saveUpdate.next(null);
+          }
           this.saveUpdate.next(this.list[this.editIndex]);
           this.editIndex = -1;
         }
